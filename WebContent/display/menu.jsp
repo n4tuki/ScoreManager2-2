@@ -13,7 +13,7 @@
   #wrap {
     min-height: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;e
   }
 
   #content {
