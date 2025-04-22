@@ -18,7 +18,7 @@
 
 	#side a {
 	text-decoration: none;
-	color: #ffadff;               gddfdfdfd
+	color: #ffadff;
 	}
 
 	#side a:hover {
