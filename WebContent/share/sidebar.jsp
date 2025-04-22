@@ -22,8 +22,6 @@
 	}
 
 
-	LLLLLLLL
-
 	#side a:hover {
 	color: #ff7fbf;
 	}
