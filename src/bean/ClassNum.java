@@ -11,17 +11,17 @@ public class ClassNum implements Serializable {
     /**
      * 学校:School
      */
-    private School school;
+    private String school;
 
     /**
      * ゲッター・セッター
      */
 
-    public School getSchool() {
+    public String getSchool() {
         return school;
     }
 
-    public void setSchool(School school) {
+    public void setSchool(String school) {
         this.school = school;
     }
 
