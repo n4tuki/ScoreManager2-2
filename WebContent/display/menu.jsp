@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +12,7 @@
   #wrap {
     min-height: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;e
   }
 
   #content {
