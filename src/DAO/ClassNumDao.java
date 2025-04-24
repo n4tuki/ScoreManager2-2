@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import bean.ClassNum;
@@ -19,25 +20,34 @@ public class ClassNumDao extends DAO {
 
     public List<ClassNum> get(String class_num, School school) throws SQLException {
         String sql = "SELECT * FROM class_num WHERE class_num = ? AND school_id = ?";
+        List<ClassNum> classNums = new ArrayList<>();
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, class_num);
-            stmt.setInt(2, school.getId());
+            stmt.setInt(2, school.getCd());
             try (ResultSet rs = stmt.executeQuery()) {
-                // ResultSetの処理
+                while (rs.next()) {
+                    ClassNum cn = new ClassNum();
+                    cn.setClassNum(rs.getString("class_num"));
+                    cn.setSchool(school);
+                    classNums.add(cn);
+                }
             }
         }
-        return null; // 実際のリストを返すように変更してください
+        return classNums;
     }
 
     public List<String> filter(School school) throws SQLException {
         String sql = "SELECT class_num FROM class_num WHERE school_id = ?";
+        List<String> classNums = new ArrayList<>();
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, school.getId());
+            stmt.setInt(1, school.getCd());
             try (ResultSet rs = stmt.executeQuery()) {
-                // ResultSetの処理
+                while (rs.next()) {
+                    classNums.add(rs.getString("class_num"));
+                }
             }
         }
-        return null; // 実際のリストを返すように変更してください
+        return classNums;
     }
 
     public boolean save(ClassNum classNum) throws SQLException {
