@@ -17,11 +17,11 @@ public class ClassNumDao extends DAO {
         this.connection = connection;
     }
 
-    public List<ClassNum> get(String class_num, School school) throws SQLException {
+    public List<ClassNum> get(String class_num, String School_cd) throws SQLException {
         String sql = "SELECT * FROM class_num WHERE class_num = ? AND school_id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, class_num);
-            stmt.setInt(2, school.getId());
+            stmt.setString(2, getSchool_cd());
             try (ResultSet rs = stmt.executeQuery()) {
                 // ResultSetの処理
             }

@@ -1,9 +1,11 @@
-package display;
+package java;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DAO.AnotherDAO;
+import bean.Teacher;
 import tool.Action;
 
 public class LoginAction extends Action {
@@ -13,14 +15,15 @@ public class LoginAction extends Action {
 
 		HttpSession session=request.getSession();
 
-		String login=request.getParameter("id ");
+		String id=request.getParameter("id");
 		String password=request.getParameter("password");
+		AnotherDAO dao=new AnotherDAO();
+		Teacher Another=dao.teacherSearch(id, password);
 
-
-		//if (customer!=null) {
-			//session.setAttribute("customer", customer);
-			//return "login-out.jsp";
-		//}
+		if (Another!=null) {
+			session.setAttribute("teacher", Another);
+			return "menu.jsp";
+		}
 
 		return "login-error.jsp";
 	}

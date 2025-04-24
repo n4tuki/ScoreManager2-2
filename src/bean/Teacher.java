@@ -10,7 +10,7 @@ public class Teacher extends User implements Serializable {
     // 教員名:String
     private String name;
     // 学校:School
-    private School school;
+    private String school_cd;
 
     // ゲッター セッター
     public String getId() {
@@ -37,11 +37,11 @@ public class Teacher extends User implements Serializable {
         this.name = name;
     }
 
-    public School getSchool() {
-        return school;
+    public String getSchool_cd() {
+        return school_cd;
     }
 
-    public void setSchool(School school) {
-        this.school = school;
+    public void setSchool_cd(String school_cd) {
+    	 this.school_cd = school_cd;
     }
 }
