@@ -11,18 +11,18 @@ public class ClassNum implements Serializable {
     /**
      * 学校:School
      */
-    private String school;
+    private String school_cd;
 
     /**
      * ゲッター・セッター
      */
 
-    public String getSchool() {
-        return school;
+    public String getSchool_cd() {
+        return school_cd;
     }
 
-    public void setSchool(String school) {
-        this.school = school;
+    public void setSchool_cd(String school_cd) {
+        this.school_cd = school_cd;
     }
 
     public String getClass_num() {

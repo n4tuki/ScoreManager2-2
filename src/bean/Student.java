@@ -1,35 +1,79 @@
 package bean;
-public class Student implements java.io.Serializable {
-//生徒情報のゲッター、セッターを作成
-	private int id;
-	private String name;
-	private int course_id;
-	private String courseName;
 
-	public int getId() {
-		return id;
-	}
-	public String getName() {
-		return name;
-	}
-	public int getCourse_id() {
-		return course_id;
-	}
-	public String getCourseName(){
-		return courseName;
-	}
+import java.io.Serializable;
 
+public class Student implements Serializable {
+    /**
+     * 学生番号:String
+     */
+    private String no;
+    /**
+     * 学生名:String
+     */
+    private String name;
+    /**
+     * 入学年度:int
+     */
+    private int entYear;
+    /**
+     * クラス番号:String
+     */
+    private String classNum;
+    /**
+     * 在籍フラグ:boolean
+     */
+    private boolean isAttend;
+    /**
+     * 学校:School
+     */
+    private School school;
 
-	public void setId(int id) {
-		this.id=id;
-	}
-	public void setName(String name) {
-		this.name=name;
-	}
-	public void setCourse_id(int course_id) {
-			this.course_id=course_id;
-	}
-	public void setCourseName(String courseName) {
-		this.courseName=courseName;
-}
+    // ゲッター・セッタ
+    public String getNo() {
+        return no;
+    }
+
+    public void setNo(String no) {
+        this.no = no;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getEntYear() {
+        return entYear;
+    }
+
+    public void setEntYear(int entYear) {
+        this.entYear = entYear;
+    }
+
+    public String getClassNum() {
+        return classNum;
+    }
+
+    public void setClassNum(String classNum) {
+        this.classNum = classNum;
+    }
+
+    public boolean isAttend() {
+        return isAttend;
+    }
+
+    public void setAttend(boolean isAttend) {
+        this.isAttend = isAttend;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
 }
