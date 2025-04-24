@@ -12,7 +12,7 @@
   #wrap {
     min-height: 100%;
     display: flex;
-    flex-direction: column;e
+    flex-direction: column;
   }
 
   #content {
@@ -24,6 +24,9 @@
   #right {
     flex: 1;
     padding: 10px;
+    display: flex;
+    flex-direction: row; /* 横並びに変更 */
+    justify-content: space-around; /* 均等に配置 */
   }
 
   #subheader {
@@ -35,8 +38,8 @@
   }
 
   #subtitle {
-	padding: 0.5rem;
-	}
+    padding: 0.5rem;
+  }
 
   #footer {
     background-color: #ccc;
@@ -47,44 +50,34 @@
     width: 100%;
   }
 
-  #primary {
-	background-color: #b88884;
-	border-radius: 10px;
-	height: 40%;
-	width: 25%;
-	display: flex;
-	margin-top: 20px;
+  .box {
+    border-radius: 10px;
+    height: 40%;
+    width: 30%;
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
-  #primary-text {
-	font-size: 20px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 5rem;
+  #primary {
+    background-color: #ff3399;
   }
 
   #secondary {
-	background-color: #93ff93;
-	border-radius: 10px;
-	height: 40%;
-	width: 25%;
-	display: flex;
-	margin-top: 20px;
+    background-color: #93ff93;
   }
-
-  #secondary-text {
-	font-size: 20px;
-	display: flex;
-
-  }
-
 
   #third {
-
+    background-color: #9933ff;
   }
 
-
+  .box-text {
+    font-size: 20px;
+    padding: 5rem;
+    text-align: center;
+  }
 </style>
 </head>
 <body>
@@ -95,21 +88,22 @@
   <div id="content">
     <%@include file="../share/sidebar.jsp" %>
     <div id="right">
-      <div id="subheader">
-      	<div id="subtitle">
-        	<h3>メニュー</h3>
+      <div id="primary" class="box">
+        <div class="box-text">
+          <a href="#">学生管理</a>
         </div>
       </div>
-      <div id="primary">
-      	<div id="primary-text">
-      <a href="#">学生管理</a></div>
+      <div id="secondary" class="box">
+        <div class="box-text">
+          <p>成績管理</p>
+          <a href="#">成績登録</a><br>
+          <a href="#">成績参照</a>
+        </div>
       </div>
-      <div id="secondary">
-      	<div id="secondary-text">
-      	<p>成績管理</p>
-      	<a href="#">成績登録</a>
-      	<a href="#">成績参照</a>
-      	</div>
+      <div id="third" class="box">
+        <div class="box-text">
+          <a href="#">科目管理</a>
+        </div>
       </div>
     </div>
   </div>
