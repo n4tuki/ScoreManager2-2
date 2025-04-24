@@ -28,7 +28,7 @@ public class Student implements Serializable {
      */
     private School school;
 
-    // ゲッター・セッター
+    // ゲッター・セッタ
     public String getNo() {
         return no;
     }
