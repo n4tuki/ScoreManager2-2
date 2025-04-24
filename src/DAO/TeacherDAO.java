@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import bean.Teacher;
 
 
-public class AnotherDAO extends DAO {
+public class TeacherDAO extends DAO {
 
 	public Teacher teacherSearch(String id, String password) throws Exception {
 		Teacher teacher=null;
