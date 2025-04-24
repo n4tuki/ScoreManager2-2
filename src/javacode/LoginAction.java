@@ -1,4 +1,4 @@
-package java;
+package javacode;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
