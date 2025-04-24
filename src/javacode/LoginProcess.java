@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.AnotherDAO;
+import DAO.TeacherDAO;
 import bean.Teacher;
 
 @WebServlet("/LoginProcess")
@@ -22,7 +22,7 @@ public class LoginProcess extends HttpServlet {
         String id = request.getParameter("id");
         String password = request.getParameter("password");
 
-        AnotherDAO dao = new AnotherDAO(); // DAOのインスタンスを生成
+        TeacherDAO dao = new TeacherDAO(); // DAOのインスタンスを生成
         Teacher Another = null;
         String errorMessage = null;
 
@@ -36,7 +36,7 @@ public class LoginProcess extends HttpServlet {
 
         if (Another != null) {
             session.setAttribute("teacher", Another); // ログイン成功、Teacherオブジェクトをセッションに保存
-            response.sendRedirect("login-out.jsp"); // ログイン成功後の画面へリダイレクト
+            response.sendRedirect("menu.jsp"); // ログイン成功後の画面へリダイレクト
         } else {
             if (errorMessage != null) {
                 request.setAttribute("errorMessage", errorMessage);

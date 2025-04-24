@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.AnotherDAO;
+import DAO.TeacherDAO;
 import bean.Teacher;
 import tool.Action;
 
@@ -17,7 +17,7 @@ public class LoginAction extends Action {
 
 		String id=request.getParameter("id");
 		String password=request.getParameter("password");
-		AnotherDAO dao=new AnotherDAO();
+		TeacherDAO dao=new TeacherDAO();
 		Teacher Another=dao.teacherSearch(id, password);
 
 		if (Another!=null) {
