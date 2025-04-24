@@ -63,12 +63,6 @@
     <div class="header">
         <h1>得点管理システム</h1>
     </div>
-    <div class="logout-message-container">
-        <p>ログアウトしました</p>
-    </div>
-    <div>
-        <a href="login-in.jsp" class="login-link">ログイン</a>
-    </div>
     <div id="footer">
         <div id="footer-content">
             <p>&copy; 2025 TIC </p>

@@ -31,6 +31,6 @@
     <div id="title">得点管理システム</div>
     <div id="subinfo">
       <p><a href="login-in.jsp">ログイン</a></p>
-      <p><a href="#">ログアウト</a></p>
+      <p><a href="login-out.jsp">ログアウト</a></p>
     </div>
   </div>
