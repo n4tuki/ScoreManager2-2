@@ -10,11 +10,11 @@ import java.util.List;
 
 import javax.security.auth.Subject;
 
-public class SubjectDao extends DAO {
+public class SubjectsDao extends DAO {
 
     private Connection connection;
 
-    public SubjectDao(Connection connection) {
+    public SubjectsDao(Connection connection) {
         this.connection = connection;
     }
 

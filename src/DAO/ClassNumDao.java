@@ -1,4 +1,4 @@
-package DAO;
+package DAO ;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +23,7 @@ public class ClassNumDao extends DAO {
         List<ClassNum> classNums = new ArrayList<>();
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, class_num);
-            stmt.setInt(2, school.getCd());
+            stmt.setInt(2, school.getId());
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     ClassNum cn = new ClassNum();
@@ -40,7 +40,7 @@ public class ClassNumDao extends DAO {
         String sql = "SELECT class_num FROM class_num WHERE school_id = ?";
         List<String> classNums = new ArrayList<>();
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, school.getCd());
+            stmt.setInt(1, school.getId());
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     classNums.add(rs.getString("class_num"));
