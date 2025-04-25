@@ -27,8 +27,10 @@ public class ClassNumDao extends DAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     ClassNum cn = new ClassNum();
-                    cn.setClassNum(rs.getString("class_num"));
-                    cn.setSchool(new School(schoolId)); // Schoolオブジェクトを設定
+                    cn.setClass_num(rs.getString("class_num"));
+                    School school = new School();
+                    school.setCd(schoolId);
+                    cn.setSchool(school);
                     classNums.add(cn);
                 }
             }
@@ -40,7 +42,7 @@ public class ClassNumDao extends DAO {
         String sql = "SELECT class_num FROM class_num WHERE school_id = ?";
         List<String> classNums = new ArrayList<>();
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, school.getCd()); // 学校IDを設定
+            stmt.setString(1, school.getCd());
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     classNums.add(rs.getString("class_num"));
@@ -53,8 +55,8 @@ public class ClassNumDao extends DAO {
     public boolean save(ClassNum classNum) throws SQLException {
         String sql = "INSERT INTO class_num (class_num, school_id) VALUES (?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, classNum.getClassNum());
-            stmt.setString(2, classNum.getSchool().getCd()); // 学校IDを設定
+            stmt.setString(1, classNum.getClass_num());
+            stmt.setString(2, classNum.getSchool().getCd());
             return stmt.executeUpdate() > 0;
         }
     }
@@ -62,9 +64,9 @@ public class ClassNumDao extends DAO {
     public boolean save(ClassNum classNum, String newClassNum) throws SQLException {
         String sql = "UPDATE class_num SET class_num = ? WHERE class_num = ? AND school_id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, newClassNum); // 新しいクラス番号を設定
-            stmt.setString(2, classNum.getClassNum()); // 現在のクラス番号を設定
-            stmt.setString(3, classNum.getSchool().getCd()); // 学校IDを設定
+            stmt.setString(1, newClassNum);
+            stmt.setString(2, classNum.getClass_num());
+            stmt.setString(3, classNum.getSchool().getCd());
             return stmt.executeUpdate() > 0;
         }
     }
