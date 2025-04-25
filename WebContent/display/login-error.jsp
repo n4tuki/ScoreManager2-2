@@ -30,7 +30,7 @@
             margin-bottom: 15px;
         }
         .error-message {
-            color: #c0392b;
+            color: #c0392b; /* より強調された赤 */
             font-weight: bold;
             margin-bottom: 20px;
         }
@@ -47,8 +47,8 @@
     <div class="error-container">
         <h2>ログインエラー</h2>
         <p class="error-message">${errorMessage}</p>
-        <p>IDまたはパスワードが間違っています。</p>
-        <p><a href="login.jsp">ログイン画面へ戻る</a></p>
+        <p>ログインIDまたはパスワードが間違っています。</p>
+        <p><a href="../display/login-in.jsp">ログイン画面に戻る</a></p>
     </div>
 </body>
 </html>

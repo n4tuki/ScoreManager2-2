@@ -60,9 +60,6 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>得点管理システム</h1>
-    </div>
     <div id="footer">
         <div id="footer-content">
             <p>&copy; 2025 TIC </p>

@@ -85,7 +85,7 @@
 <body>
     <div class="login-container">
         <h2>ログイン</h2>
-        <form action="login-process.jsp" method="post">
+        <form action="../javacode/LoginProcess" method="post">
             <div class="form-group">
                 <label for="id">ID</label>
                 <input type="text" id="id" name="id" size="30" value="${id}" required>
