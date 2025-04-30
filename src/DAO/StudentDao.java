@@ -28,7 +28,7 @@ public class StudentDao extends DAO {
         List<Student> students = new ArrayList<>();
         while (rSet.next()) {
             Student student = mapRowToStudent(rSet);
-            if (student.getSchoolCd().equals(school.getCd())) {
+            if (student.getNo().equals(school.getCd())) {
                 students.add(student);
             }
         }
@@ -65,7 +65,7 @@ public class StudentDao extends DAO {
             stmt.setInt(3, student.getEntYear());
             stmt.setString(4, student.getClassNum());
             stmt.setBoolean(5, student.isAttend());
-            stmt.setString(6, student.getSchoolCd());
+            stmt.setString(6, student.getNo());
             return stmt.executeUpdate() > 0;
         }
     }
@@ -77,7 +77,7 @@ public class StudentDao extends DAO {
         student.setEntYear(rs.getInt("ENT_YEAR"));
         student.setClassNum(rs.getString("CLASS_NUM"));
         student.setAttend(rs.getBoolean("IS_ATTEND"));
-        student.setSchoolCd(rs.getString("SCHOOL_CD"));
+        student.setNo(rs.getString("SCHOOL_CD"));
         return student;
     }
 }

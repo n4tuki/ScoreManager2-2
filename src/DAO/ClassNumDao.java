@@ -19,7 +19,7 @@ public class ClassNumDao extends DAO {
     }
 
     public List<ClassNum> get(String classNum, String schoolId) throws SQLException {
-        String sql = "SELECT * FROM class_num WHERE class_num = ? AND school_id = ?";
+        String sql = "SELECT * FROM class_num WHERE class_num = ? AND school_cd = ?";
         List<ClassNum> classNums = new ArrayList<>();
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, classNum);
@@ -30,7 +30,7 @@ public class ClassNumDao extends DAO {
                     cn.setClass_num(rs.getString("class_num"));
                     School school = new School();
                     school.setCd(schoolId);
-                    cn.setSchool(school);
+                    cn.setSchool_cd(school);
                     classNums.add(cn);
                 }
             }
@@ -53,20 +53,20 @@ public class ClassNumDao extends DAO {
     }
 
     public boolean save(ClassNum classNum) throws SQLException {
-        String sql = "INSERT INTO class_num (class_num, school_id) VALUES (?, ?)";
+        String sql = "INSERT INTO class_num (class_num, school_cd) VALUES (?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, classNum.getClass_num());
-            stmt.setString(2, classNum.getSchool().getCd());
+            stmt.setString(2, classNum.getSchool_cd().getCd());
             return stmt.executeUpdate() > 0;
         }
     }
 
     public boolean save(ClassNum classNum, String newClassNum) throws SQLException {
-        String sql = "UPDATE class_num SET class_num = ? WHERE class_num = ? AND school_id = ?";
+        String sql = "UPDATE class_num SET class_num = ? WHERE class_num = ? AND school_cd = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, newClassNum);
             stmt.setString(2, classNum.getClass_num());
-            stmt.setString(3, classNum.getSchool().getCd());
+            stmt.setString(3, classNum.getSchool_cd().getCd());
             return stmt.executeUpdate() > 0;
         }
     }
