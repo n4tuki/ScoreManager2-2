@@ -14,6 +14,7 @@
     min-height: 100%;
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 
   #content {
