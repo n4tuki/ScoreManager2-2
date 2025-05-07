@@ -22,6 +22,7 @@ public class LoginAction extends Action {
 
 		if (Another!=null) {
 			session.setAttribute("teacher", Another);
+			session.setAttribute("school", Another.getSchool());
 			return "menu.jsp";
 		}
 
