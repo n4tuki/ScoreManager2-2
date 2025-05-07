@@ -18,7 +18,7 @@ public class Test implements Serializable {
     /**
      * テスト番号または識別ID:String
      */
-    private String no;
+    private int no;
     /**
      * 点数:int
      */
@@ -53,12 +53,12 @@ public class Test implements Serializable {
         this.schoolCode = schoolCd;
     }
 
-    public String getNo() {
+    public int getNo() {
         return no;
     }
 
-    public void setNo(String no) {
-        this.no = no;
+    public void setNo(int i) {
+        this.no = i;
     }
 
     public int getPoint() {
