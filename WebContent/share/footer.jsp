@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
+
     <title>ログアウト</title>
     <style>
         body {
@@ -58,11 +57,7 @@
             letter-spacing: -0.5px;
         }
     </style>
-</head>
-<body>
-    <div class="header">
-        <h1>得点管理システム</h1>
-    </div>
+
     <div id="footer">
         <div id="footer-content">
             <p>&copy; 2025 TIC </p>
@@ -73,5 +68,3 @@
         // 実際のアプリケーションでは、ここでセッションの破棄などのログアウト処理を行います。
         session.invalidate();
     %>
-</body>
-</html>

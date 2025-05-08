@@ -1,6 +1,5 @@
 package DAO;
 
-//A
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,13 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.security.auth.Subject;
+import bean.Subject; // 正しいSubjectクラスをインポート
 
-public class SubjectsDao extends DAO {
+public class SubjectDao extends DAO {
 
     private Connection connection;
 
-    public SubjectsDao(Connection connection) {
+    public SubjectDao(Connection connection) {
         this.connection = connection;
     }
 

@@ -13,8 +13,8 @@ import DAO.StudentDao;
 import bean.School;
 import bean.Student;
 
-@WebServlet("/display/stdm")
-public class STDM extends HttpServlet {
+@WebServlet("/display/stumanage")
+public class StudentManage extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -24,6 +24,7 @@ public class STDM extends HttpServlet {
         try {
             // 仮のSchoolオブジェクト（本来はログイン情報から取得）
             School school = new School();
+            school.setCd("OHS123"); // 適宜修正
 
             // クエリパラメータ取得（nullでも動くように）
             String entYearStr = request.getParameter("entYear");
@@ -46,7 +47,7 @@ public class STDM extends HttpServlet {
             }
 
             request.setAttribute("studentList", list);
-            request.getRequestDispatcher("studentM.jsp").forward(request, response);
+            request.getRequestDispatcher("").forward(request, response);
 
         } catch (Exception e) {
             e.printStackTrace();

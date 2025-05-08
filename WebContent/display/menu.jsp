@@ -13,6 +13,7 @@
     min-height: 100%;
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 
   #content {
@@ -25,8 +26,8 @@
     flex: 1;
     padding: 10px;
     display: flex;
-    flex-direction: row; /* 横並びに変更 */
-    justify-content: space-around; /* 均等に配置 */
+    flex-direction: column; /* 横並びに変更 */
+    justify-content: center; /* 均等に配置 */
   }
 
   #subheader {
@@ -34,7 +35,7 @@
     background-color: gainsboro;
     border-radius: 5px;
     display: inline-block;
-    width: 95%;
+    width: 92%;
   }
 
   #subtitle {
@@ -88,25 +89,30 @@
   <div id="content">
     <%@include file="../share/sidebar.jsp" %>
     <div id="right">
-      <div id="primary" class="box">
-        <div class="box-text">
-          <a href="#">学生管理</a>
-        </div>
-      </div>
-      <div id="secondary" class="box">
-        <div class="box-text">
-          <p>成績管理</p>
-          <a href="#">成績登録</a><br>
-          <a href="#">成績参照</a>
-        </div>
-      </div>
-      <div id="third" class="box">
-        <div class="box-text">
-          <a href="#">科目管理</a>
-        </div>
-      </div>
+  <div id="subheader">
+    <div id="subtitle">
+      <h3>メニュー</h3>
     </div>
   </div>
+  <div id="primary" class="box">
+    <div class="box-text">
+      <a href="#">学生管理</a>
+    </div>
+  </div>
+  <div id="secondary" class="box">
+    <div class="box-text">
+      <p>成績管理</p>
+      <a href="#">成績登録</a><br>
+      <a href="#">成績参照</a>
+    </div>
+  </div>
+  <div id="third" class="box">
+    <div class="box-text">
+      <a href="#">科目管理</a>
+    </div>
+  </div>
+</div>
+</div>
   <div id="footer">
     <%@include file="../share/footer.jsp" %>
   </div>

@@ -44,4 +44,14 @@ public class Teacher extends User implements Serializable {
     public void setSchool_cd(String school_cd) {
     	 this.school_cd = school_cd;
     }
+
+    private School school;
+
+    public School getSchool() {
+        return school;
+    }
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
 }

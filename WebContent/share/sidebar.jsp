@@ -2,36 +2,34 @@
     pageEncoding="UTF-8"%>
 
 <style>
+#left {
+  width: 15%;
+  border-right: 1px solid black;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #d1ffd1;
+}
 
-	#left {
-	width: 15%;
-	border-right: 1px solid black;
-	padding: 10px;
-	box-sizing: border-box;
-	background-color: #d1ffd1;
-	}
+#side {
+  margin: 0;
+  padding: 0 10px;
+  line-height: 2;
+}
 
-	#side {
-	margin: 2rem;
-	line-height: 2;
-	}
+#side a {
+  text-decoration: none;
+  color: #ffadff;
+}
 
-	#side a {
-	text-decoration: none;
-	color: #ffadff;
-	}
+#side a:hover {
+  color: #ff7fbf;
+}
 
-
-	#side a:hover {
-	color: #ff7fbf;
-	}
-
-	#side .indent {
-	margin-left: 1rem;
-
-	}
-
+#side .indent {
+  margin-left: 1rem;
+}
 </style>
+
 
 
 <div id="left">
