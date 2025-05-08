@@ -30,19 +30,13 @@ public class LoginProcess extends HttpServlet {
 
         try {
             Another = dao.teacherSearch(id, password);
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+            errorMessage = "データベースへの接続または処理中にエラーが発生しました。";
         } catch (Exception e) {
             e.printStackTrace();
-            errorMessage = "データベース処理中にエラーが発生しました。";
+            errorMessage = "予期せぬエラーが発生しました。";
         }
-        // 特定の例外（例: NoSuchTeacherException）をキャッチした場合のエラーメッセージ
-        /*
-        catch (NoSuchTeacherException e) {
-            errorMessage = "IDまたはパスワードが間違っています。";
-        } catch (Exception e) {
-            e.printStackTrace();
-            errorMessage = "データベースエラーが発生しました。";
-        }
-        */
 
         if (Another != null) {
             session.setAttribute("teacher", Another);
