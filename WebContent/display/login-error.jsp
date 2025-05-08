@@ -47,7 +47,6 @@
     <div class="error-container">
         <h2>ログインエラー</h2>
         <p class="error-message">${errorMessage}</p>
-        <p>ログインIDまたはパスワードが間違っています。</p>
         <p><a href="../display/login-in.jsp">ログイン画面に戻る</a></p>
     </div>
 </body>

@@ -24,6 +24,7 @@ public class LoginProcess extends HttpServlet {
         String id = request.getParameter("id");
         String password = request.getParameter("password");
 
+
         TeacherDAO dao = new TeacherDAO();
         Teacher Another = null;
         String errorMessage = null;
@@ -38,13 +39,16 @@ public class LoginProcess extends HttpServlet {
             errorMessage = "予期せぬエラーが発生しました。";
         }
 
+
         if (Another != null) {
             session.setAttribute("teacher", Another);
             response.sendRedirect("../display/menu.jsp");
         } else {
             if (errorMessage != null) {
+
                 request.setAttribute("errorMessage", errorMessage);
             } else {
+
                 request.setAttribute("errorMessage", "IDまたはパスワードが間違っています。");
             }
             request.getRequestDispatcher("../display/login-error.jsp").forward(request, response);
