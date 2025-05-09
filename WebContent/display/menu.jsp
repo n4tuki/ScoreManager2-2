@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@include file="../share/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,9 +83,6 @@
 </style>
 </head>
 <body>
-
-<%@include file="../share/header.jsp" %>
-
 <div id="wrap">
   <div id="content">
     <%@include file="../share/sidebar.jsp" %>
