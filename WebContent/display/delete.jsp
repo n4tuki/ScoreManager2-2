@@ -52,15 +52,17 @@
 			<div id="subheader">
 				<div id="subtitle">
 				<h3>科目情報削除</h3>
-				<p>② 「Javaプログラミング基礎(F02)」を削除してもよろしいですか</p>
+				<p>「Javaプログラミング基礎(F02)」を削除してもよろしいですか</p>
 
         <form action="SubjectDelete.action" method="post">
             <input type="hidden" name="code" value="F02" />
-            <button type="submit" class="btn">③ 削除</button>
+            <button type="submit" class="btn"> 削除</button>
         </form>
 				</div>
 			</div>
 		</div>
+
+
 		<a href="menu.jsp">④ 戻る</a>
 	</div>
 </div>
