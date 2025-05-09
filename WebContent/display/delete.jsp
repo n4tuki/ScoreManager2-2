@@ -79,5 +79,4 @@ html, body { height: 100%; }
 	</div>
 </div>
 
-
 <%@ include file="../share/footer.jsp" %>
