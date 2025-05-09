@@ -56,7 +56,7 @@
 
         <form action="SubjectDelete.action" method="post">
             <input type="hidden" name="code" value="F02" />
-            <button type="submit" class="btn"> 削除</button>
+            <button type="submit" class="btn">削除</button>
         </form>
 				</div>
 			</div>
