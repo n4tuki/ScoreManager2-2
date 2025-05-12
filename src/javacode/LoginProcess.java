@@ -11,8 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import DAO.TeacherDAO;
 import bean.Teacher;
-// 存在しない例外クラスの例です。実際には適切な例外クラスを使用してください。
-// import exception.NoSuchTeacherException;
+
 
 @WebServlet("/javacode/LoginProcess")
 public class LoginProcess extends HttpServlet {

@@ -1,4 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="java.util.List, bean.Student" %>
+
+<%
+    List<Student> studentList = (List<Student>) request.getAttribute("studentList");
+    String entYear = request.getParameter("entYear");
+    String classNum = request.getParameter("classNum");
+    String isAttend = request.getParameter("isAttend");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -6,39 +14,45 @@
 <meta charset="UTF-8">
 <title>Score Management</title>
 <style>
-	*{ margin:0;padding: 0;}
+ * { margin: 0; padding: 0; box-sizing: border-box; }
 
-	html, body { height: 100%; }
+html, body { height: 100%; }
 
-	#wrap {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
+#wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
-	#subtitle {
-	padding: 0.5rem 0.5rem;
-	}
-
-	#subheader {
-    padding: 1rem;
-    background-color: gainsboro;
-    border-radius: 5px;
-    display: inline-block;
-    width: 95%;
-  }
-
-  #right {
-    flex: 1;
-    padding: 10px;
-  }
-
-  #content{
+#content {
   flex: 1;
   display: flex;
+  flex-direction: row; /* 横並びに */
   width: 100%;
+}
+
+#subheader {
+  padding: 1rem;
+  background-color: gainsboro;
+  border-radius: 5px;
+  width: 100%;
+  display: block;
+  margin-left: 0;
+}
+
+
+  #subtitle {
+    padding: 0.5rem;
   }
 
+#right {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: none;
+}
 
 </style>
 </head>
@@ -52,19 +66,17 @@
 			<div id="subheader">
 				<div id="subtitle">
 				<h3>科目情報削除</h3>
-				<p>② 「Javaプログラミング基礎(F02)」を削除してもよろしいですか</p>
+				<p>「Javaプログラミング基礎(F02)」を削除してもよろしいですか</p>
 
         <form action="SubjectDelete.action" method="post">
             <input type="hidden" name="code" value="F02" />
-            <button type="submit" class="btn">③ 削除</button>
+            <button type="submit" class="btn">削除</button>
         </form>
 				</div>
 			</div>
 		</div>
-		<a href="menu.jsp">④ 戻る</a>
+		<a href="menu.jsp">戻る</a>
 	</div>
 </div>
-
-
 
 <%@ include file="../share/footer.jsp" %>

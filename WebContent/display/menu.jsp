@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@include file="../share/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,12 +23,19 @@
   }
 
   #right {
-    flex: 1;
-    padding: 10px;
-    display: flex;
-    flex-direction: column; /* 横並びに変更 */
-    justify-content: center; /* 均等に配置 */
-  }
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#box-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
 
   #subheader {
     padding: 1rem;
@@ -55,7 +61,7 @@
   .box {
     border-radius: 10px;
     height: 40%;
-    width: 30%;
+    width: 50%;
     display: flex;
     margin-top: 20px;
     flex-direction: column;
@@ -83,6 +89,9 @@
 </style>
 </head>
 <body>
+
+<%@include file="../share/header.jsp" %>
+
 <div id="wrap">
   <div id="content">
     <%@include file="../share/sidebar.jsp" %>
@@ -92,21 +101,23 @@
       <h3>メニュー</h3>
     </div>
   </div>
-  <div id="primary" class="box">
-    <div class="box-text">
-      <a href="#">学生管理</a>
+  <div id="box-container">
+    <div id="primary" class="box">
+      <div class="box-text">
+        <a href="#">学生管理</a>
+      </div>
     </div>
-  </div>
-  <div id="secondary" class="box">
-    <div class="box-text">
-      <p>成績管理</p>
-      <a href="#">成績登録</a><br>
-      <a href="#">成績参照</a>
+    <div id="secondary" class="box">
+      <div class="box-text">
+        <p>成績管理</p>
+        <a href="#">成績登録</a><br>
+        <a href="#">成績参照</a>
+      </div>
     </div>
-  </div>
-  <div id="third" class="box">
-    <div class="box-text">
-      <a href="#">科目管理</a>
+    <div id="third" class="box">
+      <div class="box-text">
+        <a href="#">科目管理</a>
+      </div>
     </div>
   </div>
 </div>
