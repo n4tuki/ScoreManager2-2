@@ -25,7 +25,7 @@ public class TeacherDAO extends DAO {
 	            // School情報を取得
 	            School school = new School();
 	            school.setCd(rs.getString("SCHOOL_CD"));
-	            teacher.setSchool(school); 
+	            teacher.setSchool(school);
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
