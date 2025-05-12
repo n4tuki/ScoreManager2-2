@@ -100,7 +100,7 @@
                 </div>
             </div>
             <button type="submit" name="login">ログイン</button>
-        </form>]
+        </form>
     </div>
 </body>
 </html>
