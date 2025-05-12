@@ -104,7 +104,7 @@
   <div id="box-container">
     <div id="primary" class="box">
       <div class="box-text">
-        <a href="#">学生管理</a>
+        <a href="studentM.jsp">学生管理</a>
       </div>
     </div>
     <div id="secondary" class="box">
