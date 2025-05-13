@@ -1,5 +1,5 @@
 package DAO;
-//mmm
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.security.auth.Subject;
-
 import bean.School;
+import bean.Subject; // Subject クラスのインポートを追加
+import bean.TestListSubject; // TestListSubject クラスのインポートを追加
 
 public class TestListSubjectDao {
     private Connection connection;
@@ -34,7 +34,7 @@ public class TestListSubjectDao {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, entYear);
             statement.setString(2, classNum);
-            statement.setInt(3, subject.getId());
+            statement.setInt(3, subject.getId()); // Subject クラスに getId() メソッドが必要
             statement.setInt(4, school.getId());
             try (ResultSet resultSet = statement.executeQuery()) {
                 return postFilter(resultSet);
