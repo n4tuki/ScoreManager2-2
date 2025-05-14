@@ -158,7 +158,7 @@
             </div>
 
             <div class="filter-container">
-                <form method="get" action="StudentList.action">
+                <form method="get" action="StudentList.action" accept-charset="UTF-8">
                     <label>入学年度:
                         <select name="entYear">
                             <option value="">--------</option>
