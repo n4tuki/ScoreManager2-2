@@ -90,22 +90,6 @@
 </head>
 <body>
 
-<%
-    if (session == null) {
-        out.println("<p>Error: No active session found in menu.jsp</p>");
-    } else {
-        out.println("<p>Session ID in menu.jsp: " + session.getId() + "</p>");
-        out.println("<p>School stored in session in menu.jsp: " + session.getAttribute("school") + "</p>");
-
-        java.util.Enumeration<String> attributeNames = session.getAttributeNames();
-        while (attributeNames.hasMoreElements()) {
-            String attrName = attributeNames.nextElement();
-            out.println("<p>Attribute in session: " + attrName + " = " + session.getAttribute(attrName) + "</p>");
-        }
-    }
-%>
-
-
 <%@include file="../share/header.jsp" %>
 
 <div id="wrap">

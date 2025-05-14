@@ -22,7 +22,7 @@
 
     html,
     body {
-        height: 100%;
+        height: 100vh;
     }
 
     #wrap {
@@ -32,11 +32,12 @@
     }
 
     #content {
-        flex: 1;
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-    }
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 100vh;
+}
 
     #subheader {
         padding: 1rem;

@@ -11,31 +11,27 @@ import bean.Student;
 import tool.Action;
 
 public class StudentListAction extends Action {
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        StudentDao dao = new StudentDao();
-        School school = (School) request.getSession().getAttribute("school");
-        System.out.println("School retrieved from session: " + school);
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	    StudentDao dao = new StudentDao();
+	    School school = (School) request.getSession().getAttribute("school");
 
-        if (school == null) {
-            throw new IllegalStateException("School object is null. Ensure it is set in the session.");
-        }
+	    if (school == null) {
+	        school = new School();
+	        school.setCd("DEFAULT_SCHOOL");
+	        request.getSession().setAttribute("school", school);
+	    }
 
-        String entYearStr = request.getParameter("entYear");
-        String classNum = request.getParameter("classNum");
-        boolean isAttend = "true".equals(request.getParameter("isAttend"));
+	    String entYearStr = request.getParameter("entYear");
+	    String classNum = request.getParameter("classNum");
+	    boolean isAttend = "true".equals(request.getParameter("isAttend"));
 
-        List<Student> list;
+	    // **新しい検索を毎回実行**
+	    List<Student> filteredList = dao.filter(school,
+	        entYearStr != null ? Integer.parseInt(entYearStr) : 2025,
+	        classNum, isAttend);
 
+	    request.setAttribute("studentList", filteredList);
 
-        if (entYearStr != null && !entYearStr.isEmpty() &&
-            classNum != null && !classNum.isEmpty()) {
-            int entYear = Integer.parseInt(entYearStr);
-            list = dao.filter(school, entYear, classNum, isAttend);
-        } else {
-            list = dao.filter(school, isAttend);
-        }
-
-        request.setAttribute("studentList", list);
-        return "studentM.jsp";
-    }
+	    return "studentM.jsp"; // **その都度新しい検索結果を適用**
+	}
 }
