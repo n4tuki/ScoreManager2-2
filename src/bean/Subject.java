@@ -40,4 +40,9 @@ public class Subject implements Serializable {
     public void setSchoolCode(String schoolCode) {
         this.schoolCode = schoolCode;
     }
+
+	public int getId() {
+		// TODO 自動生成されたメソッド・スタブ
+		return 0;
+	}
 }
