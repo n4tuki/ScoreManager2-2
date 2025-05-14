@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import DAO.TeacherDAO;
 import bean.Teacher;
 
-
 @WebServlet("/javacode/LoginProcess")
 public class LoginProcess extends HttpServlet {
 
@@ -22,7 +21,6 @@ public class LoginProcess extends HttpServlet {
         HttpSession session = request.getSession();
         String id = request.getParameter("id");
         String password = request.getParameter("password");
-
 
         TeacherDAO dao = new TeacherDAO();
         Teacher Another = null;
@@ -38,19 +36,32 @@ public class LoginProcess extends HttpServlet {
             errorMessage = "予期せぬエラーが発生しました。";
         }
 
-
         if (Another != null) {
             session.setAttribute("teacher", Another);
-            response.sendRedirect("../display/menu.jsp");
-        } else {
-            if (errorMessage != null) {
 
-                request.setAttribute("errorMessage", errorMessage);
+            // **Schoolをセッションにセット**
+            if (Another.getSchool() != null) {
+                System.out.println("Teacher's School object before setting session: " + Another.getSchool());
+                System.out.println("School CD before setting session: " + Another.getSchool().getCd());
+
+                session.setAttribute("school", Another.getSchool());
+                System.out.println("Final check: School in session after LoginProcess: " + session.getAttribute("school"));
+
+                System.out.println("School stored in session after LoginProcess: " + session.getAttribute("school"));
             } else {
-
-                request.setAttribute("errorMessage", "IDまたはパスワードが間違っています。");
+                System.out.println("Warning: Another.getSchool() is null!");
             }
-            request.getRequestDispatcher("../display/login-error.jsp").forward(request, response);
+
+            response.sendRedirect("../display/menu.jsp");
+            return; // ここで処理を終了
         }
+
+        // **ログイン失敗時の処理**
+        if (errorMessage != null) {
+            request.setAttribute("errorMessage", errorMessage);
+        } else {
+            request.setAttribute("errorMessage", "IDまたはパスワードが間違っています。");
+        }
+        request.getRequestDispatcher("../display/login-error.jsp").forward(request, response);
     }
 }

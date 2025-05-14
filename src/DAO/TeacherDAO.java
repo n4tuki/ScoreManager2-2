@@ -22,10 +22,21 @@ public class TeacherDAO extends DAO {
 	            teacher.setId(rs.getString("ID"));
 	            teacher.setName(rs.getString("NAME"));
 
-	            // School情報を取得
 	            School school = new School();
-	            school.setCd(rs.getString("SCHOOL_CD"));
+	            //school.setCd(rs.getString("SCHOOL_CD"));
+
+	            String schoolCd = rs.getString("SCHOOL_CD");
+	            System.out.println("Retrieved SCHOOL_CD before setting: " + schoolCd);
+
+	            if (schoolCd != null) {
+	                school.setCd(schoolCd);
+	            } else {
+	                System.out.println("Warning: SCHOOL_CD is null before assigning to School object.");
+	            }
+
 	            teacher.setSchool(school);
+	            System.out.println("Set School in Teacher: " + teacher.getSchool().getCd());
+
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();

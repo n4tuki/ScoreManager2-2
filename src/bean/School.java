@@ -3,12 +3,17 @@ package bean;
 import java.io.Serializable;
 
 public class School implements Serializable {
-    // 学校コード
+    private static final long serialVersionUID = 1L;
     private String cd;
-    // 学校名
     private String name;
 
-    // ゲッター セッター
+    public School() {}
+
+    public School(String cd, String name) {
+        this.cd = cd;
+        this.name = name;
+    }
+
     public String getCd() {
         return cd;
     }
@@ -23,5 +28,10 @@ public class School implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "School{cd='" + cd + "', name='" + name + "'}";
     }
 }

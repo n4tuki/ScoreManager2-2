@@ -1,11 +1,12 @@
 <Context reloadable="true">
-	<Resource
-		name="jdbc/mond"
-		auth="Container"
-		type="javax.sql.DataSource"
-		driverClassName="org.h2.Driver"
-		url="jdbc:h2:tcp://localhost/~/mond"
-		username="sa"
-		password=""
-	/>
+    <SessionCookie path="/" />
+    <Resource
+        name="jdbc/mond"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="org.h2.Driver"
+        url="jdbc:h2:tcp://localhost/~/mond"
+        username="sa"
+        password=""
+    />
 </Context>
