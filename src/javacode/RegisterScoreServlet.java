@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/registerScore")
 public class RegisterScoreServlet extends HttpServlet {
-    private static final String JDBC_URL = "jdbc:h2:tcp://localhost/~/mondH2"; // ← あなたのDB名に合わせて修正
+    private static final String JDBC_URL = "jdbc:h2:tcp://localhost/~/mond"; // ← あなたのDB名に合わせて修正
     private static final String DB_USER = "sa";
     private static final String DB_PASSWORD = "";
 
