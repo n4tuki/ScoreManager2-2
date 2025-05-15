@@ -1,7 +1,6 @@
 package javacode;
-
+//ss
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/registerScore")
 public class RegisterScoreServlet extends HttpServlet {
-    private static final String JDBC_URL = "jdbc:h2:~/test"; // H2のDBファイル
+    private static final String JDBC_URL = "jdbc:h2:~/test";
     private static final String DB_USER = "sa";
     private static final String DB_PASSWORD = "";
 
@@ -25,13 +24,12 @@ public class RegisterScoreServlet extends HttpServlet {
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html; charset=UTF-8");
 
         String studentName = request.getParameter("studentName");
         String subject = request.getParameter("subject");
         String scoreStr = request.getParameter("score");
 
-        try (PrintWriter out = response.getWriter()) {
+        try {
             int score = Integer.parseInt(scoreStr);
 
             try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD)) {
@@ -54,24 +52,24 @@ public class RegisterScoreServlet extends HttpServlet {
                     pstmt.executeUpdate();
                 }
 
-                out.println("<html><body>");
-                out.println("<h2>成績が正常に登録されました。</h2>");
-                out.println("<a href='scoreRegister.jsp'>戻る</a>");
-                out.println("</body></html>");
+                // 成功時にリダイレクト
+                response.sendRedirect("management/display/registerResult.jsp");
 
             } catch (SQLException e) {
-                out.println("<html><body>");
-                out.println("<h2>データベースエラーが発生しました。</h2>");
-                out.println("<p>" + e.getMessage() + "</p>");
-                out.println("<a href='scoreRegister.jsp'>戻る</a>");
-                out.println("</body></html>");
+                showError(response, "データベースエラー: " + e.getMessage());
             }
 
         } catch (NumberFormatException e) {
-            response.getWriter().println("<html><body>");
-            response.getWriter().println("<h2>点数は数値で入力してください。</h2>");
-            response.getWriter().println("<a href='scoreRegister.jsp'>戻る</a>");
-            response.getWriter().println("</body></html>");
+            showError(response, "点数は0〜100の数値で入力してください。");
         }
+    }
+
+    private void showError(HttpServletResponse response, String message) throws IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        response.getWriter().println("<html><body>");
+        response.getWriter().println("<h2>エラーが発生しました</h2>");
+        response.getWriter().println("<p>" + message + "</p>");
+        response.getWriter().println("<a href='scoreRegister.jsp'>戻る</a>");
+        response.getWriter().println("</body></html>");
     }
 }
