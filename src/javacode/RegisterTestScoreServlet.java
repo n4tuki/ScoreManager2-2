@@ -1,21 +1,20 @@
 package javacode;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-//sss
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/registerScore")
-public class RegisterScoreServlet extends HttpServlet {
-    private static final String JDBC_URL = "jdbc:h2:tcp://localhost/~/mond"; // ← あなたのDB名に合わせて修正
+@WebServlet("/registerTestScore")
+public class RegisterTestScoreServlet extends HttpServlet {
+    private static final String JDBC_URL = "jdbc:h2:tcp://localhost/~/mondH2";
     private static final String DB_USER = "sa";
     private static final String DB_PASSWORD = "";
 
@@ -25,36 +24,32 @@ public class RegisterScoreServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        String studentName = request.getParameter("studentName");
-        String subject = request.getParameter("subject");
-        String scoreStr = request.getParameter("score");
+        String studentNo = request.getParameter("studentNo");
+        String subjectCd = request.getParameter("subjectCd");
+        String schoolCd = request.getParameter("schoolCd");
+        String no = request.getParameter("no");
+        String pointStr = request.getParameter("point");
+        String classNum = request.getParameter("classNum");
 
         try {
-            int score = Integer.parseInt(scoreStr);
+            int point = Integer.parseInt(pointStr);
 
             try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD)) {
-                // テーブルがなければ作成
-                String createTableSQL = "CREATE TABLE IF NOT EXISTS scores (" +
-                        "id IDENTITY PRIMARY KEY, " +
-                        "student_name VARCHAR(100), " +
-                        "subject VARCHAR(100), " +
-                        "score INT)";
-                try (Statement stmt = conn.createStatement()) {
-                    stmt.execute(createTableSQL);
-                }
-
-                // 成績を挿入
-                String insertSQL = "INSERT INTO scores (student_name, subject, score) VALUES (?, ?, ?)";
+                String insertSQL = "INSERT INTO TEST (STUDENT_NO, SUBJECT_CD, SCHOOL_CD, NO, POINT, CLASS_NUM) " +
+                                   "VALUES (?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
-                    pstmt.setString(1, studentName);
-                    pstmt.setString(2, subject);
-                    pstmt.setInt(3, score);
+                    pstmt.setString(1, studentNo);
+                    pstmt.setString(2, subjectCd);
+                    pstmt.setString(3, schoolCd);
+                    pstmt.setString(4, no);
+                    pstmt.setInt(5, point);
+                    pstmt.setString(6, classNum);
                     int rows = pstmt.executeUpdate();
 
                     if (rows > 0) {
                         response.sendRedirect("management/display/registerResult.jsp");
                     } else {
-                        showError(response, "成績の登録に失敗しました。");
+                        showError(response, "登録に失敗しました。");
                     }
                 }
 
@@ -77,3 +72,4 @@ public class RegisterScoreServlet extends HttpServlet {
         response.getWriter().println("</body></html>");
     }
 }
+
