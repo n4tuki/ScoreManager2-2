@@ -68,7 +68,7 @@ html, body { height: 100%; }
 				<h3>科目情報削除</h3>
 				<p>「Javaプログラミング基礎(F02)」を削除してもよろしいですか</p>
 
-        <form action="SubjectDelete.action" method="post">
+        <form action="delete_success.jsp" method="post">
             <input type="hidden" name="code" value="F02" />
             <button type="submit" class="btn">削除</button>
         </form>

@@ -1,5 +1,7 @@
 package DAO;
-//a
+
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,65 +11,65 @@ import java.util.List;
 import bean.School;
 import bean.Student;
 
-public class StudentDao extends DAO {
-    private String baseSql = "SELECT * FROM STUDENT";
+public class StudentDao {
 
-    public Student get(String no) throws Exception {
-        String sql = baseSql + " WHERE NO = ?";
-        try (PreparedStatement stmt = getConnection().prepareStatement(sql)) {
+    public Student get(Connection conn, String no) {
+        String sql = "SELECT * FROM STUDENT WHERE NO = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, no);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 return mapRowToStudent(rs);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
 
-    private List<Student> postFilter(ResultSet rSet, School school) throws Exception {
+    public List<Student> filter(Connection conn, School school, int entYear, String classNum, boolean isAttend) {
         List<Student> students = new ArrayList<>();
-        while (rSet.next()) {
-            Student student = mapRowToStudent(rSet);
-            if (student.getNo().equals(school.getCd())) {
-                students.add(student);
-            }
-        }
-        return students;
-    }
 
-    public List<Student> filter(School school, int entYear, String classNum, boolean isAttend) throws Exception {
-        String sql = baseSql + " WHERE SCHOOL_CD = ? AND ENT_YEAR = ? AND CLASS_NUM = ? AND IS_ATTEND = ?";
-        try (PreparedStatement stmt = getConnection().prepareStatement(sql)) {
+        if (school == null || school.getCd() == null) {
+            throw new IllegalArgumentException("School object or school code is null");
+        }
+
+        String sql = "SELECT * FROM STUDENT WHERE SCHOOL_CD = ? AND ENT_YEAR = ? AND CLASS_NUM = ? AND IS_ATTEND = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, school.getCd());
             stmt.setInt(2, entYear);
             stmt.setString(3, classNum);
             stmt.setBoolean(4, isAttend);
             ResultSet rs = stmt.executeQuery();
-            return postFilter(rs, school);
+
+            while (rs.next()) {
+                students.add(mapRowToStudent(rs));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return students;
     }
 
-    public List<Student> filter(School school, boolean isAttend) throws Exception {
-        String sql = baseSql + " WHERE SCHOOL_CD = ? AND IS_ATTEND = ?";
-        try (PreparedStatement stmt = getConnection().prepareStatement(sql)) {
-            stmt.setString(1, school.getCd());
-            stmt.setBoolean(2, isAttend);
-            ResultSet rs = stmt.executeQuery();
-            return postFilter(rs, school);
-        }
-    }
-
-    public boolean save(Student student) throws Exception {
+    public boolean save(Connection conn, Student student) {
         String sql = "INSERT INTO STUDENT (NO, NAME, ENT_YEAR, CLASS_NUM, IS_ATTEND, SCHOOL_CD) VALUES (?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement stmt = getConnection().prepareStatement(sql)) {
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, student.getNo());
             stmt.setString(2, student.getName());
             stmt.setInt(3, student.getEntYear());
             stmt.setString(4, student.getClassNum());
             stmt.setBoolean(5, student.isAttend());
-            stmt.setString(6, student.getNo());
+            stmt.setString(6, student.getSchoolCd());
+            stmt.setString(6, student.getSchool() != null ? student.getSchool().getCd() : "DEFAULT_SCHOOL");
+
             return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return false;
     }
 
     private Student mapRowToStudent(ResultSet rs) throws SQLException {
@@ -77,7 +79,34 @@ public class StudentDao extends DAO {
         student.setEntYear(rs.getInt("ENT_YEAR"));
         student.setClassNum(rs.getString("CLASS_NUM"));
         student.setAttend(rs.getBoolean("IS_ATTEND"));
-        student.setNo(rs.getString("SCHOOL_CD"));
+        student.setSchoolCd(rs.getString("SCHOOL_CD"));
         return student;
     }
+
+    public Connection getConnection() {
+        try {
+            return DriverManager.getConnection("jdbc:h2:tcp://localhost/~/mond", "sa", "");
+        } catch (SQLException e) {
+            throw new RuntimeException("Database connection failed", e);
+        }
+    }
+
+    public School getSchoolByDefault(Connection conn) {
+        String sql = "SELECT * FROM SCHOOL WHERE CD = 'DEFAULT_SCHOOL'";
+        School school = null;
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                school = new School(rs.getString("CD"), rs.getString("NAME"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return school != null ? school : new School("DEFAULT_SCHOOL", "未設定の学校");
+    }
+
+
 }

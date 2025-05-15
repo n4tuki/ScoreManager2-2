@@ -22,7 +22,7 @@
 
     html,
     body {
-        height: 100%;
+        height: 100vh;
     }
 
     #wrap {
@@ -32,11 +32,12 @@
     }
 
     #content {
-        flex: 1;
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-    }
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 100vh;
+}
 
     #subheader {
         padding: 1rem;
@@ -157,7 +158,7 @@
             </div>
 
             <div class="filter-container">
-                <form method="get" action="StudentList.action">
+                <form method="get" action="StudentList.action" accept-charset="UTF-8">
                     <label>入学年度:
                         <select name="entYear">
                             <option value="">--------</option>
