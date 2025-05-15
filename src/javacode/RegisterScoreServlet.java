@@ -1,5 +1,4 @@
 package javacode;
-//ss
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+//ss
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/registerScore")
 public class RegisterScoreServlet extends HttpServlet {
-    private static final String JDBC_URL = "jdbc:h2:~/test";
+    private static final String JDBC_URL = "jdbc:h2:tcp://localhost/~/mondH2"; // ← あなたのDB名に合わせて修正
     private static final String DB_USER = "sa";
     private static final String DB_PASSWORD = "";
 
@@ -49,13 +49,17 @@ public class RegisterScoreServlet extends HttpServlet {
                     pstmt.setString(1, studentName);
                     pstmt.setString(2, subject);
                     pstmt.setInt(3, score);
-                    pstmt.executeUpdate();
+                    int rows = pstmt.executeUpdate();
+
+                    if (rows > 0) {
+                        response.sendRedirect("management/display/registerResult.jsp");
+                    } else {
+                        showError(response, "成績の登録に失敗しました。");
+                    }
                 }
 
-                // 成功時にリダイレクト
-                response.sendRedirect("management/display/registerResult.jsp");
-
             } catch (SQLException e) {
+                e.printStackTrace();
                 showError(response, "データベースエラー: " + e.getMessage());
             }
 
