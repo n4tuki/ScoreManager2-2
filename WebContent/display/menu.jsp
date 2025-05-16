@@ -33,8 +33,8 @@
 #box-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  width: 100%;
+  justify-content: space-between;
+  width: 84%;
 }
 
   #subheader {
@@ -61,24 +61,27 @@
   .box {
     border-radius: 10px;
     height: 40%;
-    width: 50%;
+    width: 45%;
     display: flex;
     margin-top: 20px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 10px;
+    gap: 40px;
+
   }
 
   #primary {
-    background-color: #ff3399;
+    background-color: #DCDCDC;
   }
 
   #secondary {
-    background-color: #93ff93;
+    background-color: #DCDCDC;
   }
 
   #third {
-    background-color: #9933ff;
+    background-color: #DCDCDC;
   }
 
   .box-text {
@@ -93,38 +96,38 @@
 <%@include file="../share/header.jsp" %>
 
 <div id="wrap">
-  <div id="content">
-    <%@include file="../share/sidebar.jsp" %>
-    <div id="right">
-  <div id="subheader">
-    <div id="subtitle">
-      <h3>メニュー</h3>
-    </div>
-  </div>
-  <div id="box-container">
-    <div id="primary" class="box">
-      <div class="box-text">
-        <div><a href="<%= request.getContextPath() %>/display/stdm">学生管理</a></div>
-      </div>
-    </div>
-    <div id="secondary" class="box">
-      <div class="box-text">
-        <p>成績管理</p>
-        <a href="#">成績登録</a><br>
-        <a href="#">成績参照</a>
-      </div>
-    </div>
-    <div id="third" class="box">
-      <div class="box-text">
-        <a href="#">科目管理</a>
-      </div>
-    </div>
-  </div>
+<div id="content">
+<%@include file="../share/sidebar.jsp" %>
+<div id="right">
+<div id="subheader">
+<div id="subtitle">
+<h3>メニュー</h3>
 </div>
 </div>
-  <div id="footer">
-    <%@include file="../share/footer.jsp" %>
-  </div>
+<div id="box-container">
+<div id="primary" class="box">
+<div class="box-text">
+<div><a href="<%= request.getContextPath() %>/display/stdm">学生管理</a></div>
+</div>
+</div>
+<div id="secondary" class="box">
+<div class="box-text">
+<p>・成績管理</p>
+<a href="#">成績登録</a><br>
+<a href="#">成績参照</a>
+</div>
+</div>
+<div id="third" class="box">
+<div class="box-text">
+<a href="#">科目管理</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<%@include file="../share/footer.jsp" %>
+</div>
 </div>
 
 </body>
