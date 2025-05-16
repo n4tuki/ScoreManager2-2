@@ -13,6 +13,26 @@ import bean.Student;
 
 public class StudentDao {
 
+
+	public List<Student> allfilter(Connection conn) {
+	    List<Student> students = new ArrayList<>();
+	    String sql = "SELECT * FROM STUDENT";
+
+	    try (PreparedStatement stmt = conn.prepareStatement(sql);
+	         ResultSet rs = stmt.executeQuery()) {
+
+	        while (rs.next()) {
+	            students.add(mapRowToStudent(rs));
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return students;
+	}
+
+
+
     public Student get(Connection conn, String no) {
         String sql = "SELECT * FROM STUDENT WHERE NO = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {

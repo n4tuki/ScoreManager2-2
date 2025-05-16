@@ -2,7 +2,6 @@ package display;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -35,42 +34,18 @@ public class STDM extends HttpServlet {
 
         logger.info("Session ID: " + session.getId());
 
-        // **セッションの属性をログ出力**
-        Enumeration<String> attributeNames = session.getAttributeNames();
-        while (attributeNames.hasMoreElements()) {
-            String attrName = attributeNames.nextElement();
-            logger.info("Session Attribute: " + attrName + " = " + session.getAttribute(attrName));
-        }
-
         // **School情報の取得**
         School school = (School) session.getAttribute("school");
 
         if (school == null) {
             logger.warning("School object is missing! Setting default.");
             school = new School();
-            school.setCd("DEFAULT_SCHOOL");  // TODO: DBから取得する場合は変更
+            school.setCd("DEFAULT_SCHOOL");
             session.setAttribute("school", school);
         }
 
         logger.info("Final School Code: " + school.getCd());
 
-        // **リクエストパラメータの取得 & 安全な処理**
-        String entYearStr = request.getParameter("entYear");
-        String classNum = request.getParameter("classNum");
-        String attendStr = request.getParameter("isAttend");
-
-        int entYear = 2025; // デフォルト値
-        boolean isAttend = "true".equals(attendStr);
-
-        try {
-            if (entYearStr != null && !entYearStr.isEmpty()) {
-                entYear = Integer.parseInt(entYearStr);
-            }
-        } catch (NumberFormatException e) {
-            logger.warning("Invalid entYear format: " + entYearStr);
-        }
-
-        //dao
         // **DAOの処理**
         StudentDao dao = new StudentDao();
         List<Student> list;
@@ -79,7 +54,10 @@ public class STDM extends HttpServlet {
             if (conn == null) {
                 throw new ServletException("Database connection failed.");
             }
-            list = dao.filter(conn, school, entYear, classNum, isAttend);
+
+            // **ページにアクセスした時点で `allfilter()` を呼び出す**
+            list = dao.allfilter(conn);
+
         } catch (Exception e) {
             logger.severe("Error retrieving student list: " + e.getMessage());
             e.printStackTrace();
