@@ -112,7 +112,7 @@
 </div>
 <div id="secondary" class="box">
 <div class="box-text">
-<p>・成績管理</p>
+<p><成績管理></p>
 <a href="#">成績登録</a><br>
 <a href="#">成績参照</a>
 </div>
