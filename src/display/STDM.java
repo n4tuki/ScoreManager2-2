@@ -70,6 +70,7 @@ public class STDM extends HttpServlet {
             logger.warning("Invalid entYear format: " + entYearStr);
         }
 
+        //dao
         // **DAOの処理**
         StudentDao dao = new StudentDao();
         List<Student> list;
