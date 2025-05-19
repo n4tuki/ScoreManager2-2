@@ -170,6 +170,8 @@
 				    <label>クラス:
 				        <select name="classNum">
 				            <option value="">--------</option>
+				            <option value="101">101</option>
+				            <option value="102">102</option>
 				            <option value="201">201</option>
 				            <option value="202">202</option>
 				        </select>
