@@ -82,7 +82,7 @@ public class StudentDao {
             stmt.setInt(3, student.getEntYear());
             stmt.setString(4, student.getClassNum());
             stmt.setBoolean(5, student.isAttend());
-            stmt.setString(6, student.getSchool() != null ? student.getSchool().getCd() : "DEFAULT_SCHOOL");
+            stmt.setString(6, student.getSchool() != null ? student.getSchool().getCd() : "tes");
 
             return stmt.executeUpdate() > 0; // **成功時は true を返す**
 
