@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns={"/display/mmnu"})
-public class MMNU extends HttpServlet {
+@WebServlet(urlPatterns={"/display/main"})
+public class Main extends HttpServlet {
 
-	public void doPost (
+	public void doGet (
 		HttpServletRequest request,	HttpServletResponse response
 	) throws ServletException, IOException {
-		request.getRequestDispatcher("menu.jsp").forward(request, response);
+		request.getRequestDispatcher("login-in.jsp").forward(request, response);
 	}
 }

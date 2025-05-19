@@ -167,7 +167,7 @@
                 </div>
             </div>
                 <div class="form-container">
-                <form action="#" method="post">
+                <form action="StudentCreate.action" method="post">
                     <div class="form-group">
                         <label for="admissionYear">入学年度</label>
                         <select id="admissionYear" name="admissionYear">

@@ -158,25 +158,25 @@
             </div>
 
             <div class="filter-container">
-                <form method="get" action="StudentList.action">
-    <label>入学年度:
-        <select name="entYear">
-            <option value="">--------</option>
-            <% for (int year = 2019; year <= 2025; year++) { %>
-            <option value="<%= year %>"><%= year %></option>
-            <% } %>
-        </select>
-    </label>
-    <label>クラス:
-        <select name="classNum">
-            <option value="">--------</option>
-            <option value="201">201</option>
-            <option value="202">202</option>
-        </select>
-    </label>
-    <label><input type="checkbox" name="isAttend" value="true"> 在学中</label>
-    <button type="submit">絞り込み</button>
-</form>
+				            <form method="get" action="StudentList.action">
+				<label>入学年度:
+				    <select name="entYear">
+				        <option value="">--------</option>
+				        <% for (int year = 2019; year <= 2025; year++) { %>
+				<option value="<%= year %>"><%= year %></option>
+				<% } %>
+				        </select>
+				    </label>
+				    <label>クラス:
+				        <select name="classNum">
+				            <option value="">--------</option>
+				            <option value="201">201</option>
+				            <option value="202">202</option>
+				        </select>
+				    </label>
+				    <label><input type="checkbox" name="isAttend" value="true"> 在学中</label>
+				    <button type="submit">絞り込み</button>
+				</form>
 
                   <a href="StudentCreate.jsp" class="new-entry-button">新規登録</a>
 

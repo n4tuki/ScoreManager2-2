@@ -73,6 +73,26 @@ public class StudentDao {
         return students;
     }
 
+    public boolean createStudent(Connection conn, Student student) {
+        String sql = "INSERT INTO STUDENT (NO, NAME, ENT_YEAR, CLASS_NUM, IS_ATTEND, SCHOOL_CD) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, student.getNo());
+            stmt.setString(2, student.getName());
+            stmt.setInt(3, student.getEntYear());
+            stmt.setString(4, student.getClassNum());
+            stmt.setBoolean(5, student.isAttend());
+            stmt.setString(6, student.getSchool() != null ? student.getSchool().getCd() : "DEFAULT_SCHOOL");
+
+            return stmt.executeUpdate() > 0; // **成功時は true を返す**
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     public boolean save(Connection conn, Student student) {
         String sql = "INSERT INTO STUDENT (NO, NAME, ENT_YEAR, CLASS_NUM, IS_ATTEND, SCHOOL_CD) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
