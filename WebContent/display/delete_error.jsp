@@ -13,7 +13,6 @@
 <body>
 
 <h2>削除に失敗しました</h2>
-<p class="error">科目「Javaプログラミング基礎（F02）」の削除中にエラーが発生しました。</p>
 
 <div class="button">
   <a href="menu.jsp">メニューに戻る</a>
