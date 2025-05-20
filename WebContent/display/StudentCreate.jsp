@@ -5,63 +5,64 @@
     <title>学生情報登録</title>
     <style>
         * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    html,
-    body {
-        height: 100vh;
-    }
+        html,
+        body {
+            height: 100vh;
+        }
 
-    #wrap {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
+        #wrap {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
 
-    #content {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    min-height: 100vh;
-}
+        #content {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            min-height: 100vh;
+        }
 
-    #subheader {
-        padding: 1rem;
-        background-color: gainsboro;
-        border-radius: 5px;
-        width: 100%;
-        display: block;
-        margin-left: 0;
-    }
+        #subheader {
+            padding: 1rem;
+            background-color: gainsboro;
+            border-radius: 5px;
+            width: 100%;
+            display: block;
+            margin-left: 0;
+        }
 
-    #subtitle {
-        padding: 0.5rem;
-    }
+        #subtitle {
+            padding: 0.5rem;
+        }
 
-    .main-container {
-    display: flex;
-    flex-direction: row; /* 横並びに配置 */
-    width: 100%;
-    min-height: 100vh; /* 画面いっぱいの高さを確保 */
-}
+        .main-container {
+            display: flex;
+            flex-direction: row; /* 横並びに配置 */
+            width: 100%;
+            min-height: 100vh; /* 画面いっぱいの高さを確保 */
+        }
 
-#sidebar {
-    width: 250px; /* 固定幅 */
-    flex-shrink: 0; /* 縮まないように設定 */
-    background-color: #f0f0f0; /* 背景を設定して視認性を向上 */
-}
+        #sidebar {
+            width: 250px; /* 固定幅 */
+            flex-shrink: 0; /* 縮まないように設定 */
+            background-color: #f0f0f0; /* 背景を設定して視認性を向上 */
+        }
 
-#right {
-    flex: 1; /* 残りのスペースを占有 */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-}
+        #right {
+            flex: 1; /* 残りのスペースを占有 */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 水平方向中央揃え */
+            justify-content: flex-start; /* 垂直方向は上寄せを維持 */
+            padding: 20px;
+        }
 
         .form-container {
             background-color: #fff;
@@ -69,7 +70,11 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             width: 600px;
-            margin-top: 20px;
+            margin-top: 20px; /* 上部の余白は維持 */
+            /* 以下を追加して垂直方向にも中央揃えにする場合 */
+            /* display: flex;
+            flex-direction: column;
+            align-items: center; */
         }
 
         .form-container h2 {
@@ -149,6 +154,16 @@
             gap: 0.5px;
             letter-spacing: -0.5px;
         }
+
+        .subheadder {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .subheadder .subtitle h3 {
+            color: #333;
+        }
     </style>
 </head>
 <body>
@@ -159,45 +174,45 @@
         <%-- サイドバーのインクルード --%>
         <%@ include file="../share/sidebar.jsp" %>
 
-	<div id="right">
-        <div class="content">
-            <div class="subheadder">
-            	<div class="subtitle">
-                	<h3>学生情報登録</h3>
+        <div id="right">
+            <div class="content">
+                <div class="subheadder">
+                    <div class="subtitle">
+                        <h3>学生情報登録</h3>
+                    </div>
                 </div>
-            </div>
                 <div class="form-container">
-                <form action="StudentCreate.action" method="Post">
-                    <div class="form-group">
-                        <label for="admissionYear">入学年度</label>
-                        <select id="admissionYear" name="admissionYear">
-                            <option value="">選択してください</option>
-                            <option value="2023">2023</option>
-                            <option value="2024">2024</option>
-                            <option value="2025" selected>2025</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="studentId">学生番号</label>
-                        <input type="text" id="studentId" name="studentId" placeholder="学生番号を入力してください" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">氏名</label>
-                        <input type="text" id="name" name="name" placeholder="氏名を入力してください" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="classNum">クラス</label>
-                        <select id="classNum" name="classNum">
-                            <option value="101" selected>101</option>
-                            <option value="102">102</option>
-                            <option value="103">103</option>
-                        </select>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit">登録して終了</button>
-                        <button type="button">戻る</button>
-                    </div>
-                </form>
+                    <form action="StudentCreate.action" method="Post">
+                        <div class="form-group">
+                            <label for="admissionYear">入学年度</label>
+                            <select id="admissionYear" name="admissionYear">
+                                <option value="">選択してください</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025" selected>2025</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="studentId">学生番号</label>
+                            <input type="text" id="studentId" name="studentId" placeholder="学生番号を入力してください" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">氏名</label>
+                            <input type="text" id="name" name="name" placeholder="氏名を入力してください" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="classNum">クラス</label>
+                            <select id="classNum" name="classNum">
+                                <option value="101" selected>101</option>
+                                <option value="102">102</option>
+                                <option value="103">103</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit">登録して終了</button>
+                            <button type="button">戻る</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
