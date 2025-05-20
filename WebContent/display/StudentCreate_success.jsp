@@ -15,16 +15,33 @@
             background-color: #f4f4f4;
         }
 
-        #container {
-            display: flex;
-            flex-grow: 1;
-            justify-content: flex-start;
-        }
+        #wrap {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 
-        #sidebar {
-	    width: 250px; /* サイドバーの固定幅 */
-	    flex-shrink: 0; /* 縮まないようにする */
-		}
+#content {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 100vh;
+}
+
+#sidebar {
+    width: 250px; /* 固定幅 */
+    flex-shrink: 0; /* 縮まないようにする */
+}
+
+#right {
+    flex: 1; /* 残りのスペースを使用 */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: none;
+}
 
 
         #main-content {
@@ -72,14 +89,15 @@
     <%-- ヘッダーのインクルード --%>
     <%@ include file="../share/header.jsp" %>
 
-    <div id="container">
+    <div id="wrap">
         <%-- サイドバーのインクルード (ファイル名を修正) --%>
         <div id="sidebar">
         <%@ include file="../share/sidebar.jsp" %>
         	</div>
 
         <%-- メインコンテンツ --%>
-        <div id="main-content">
+
+          <div id="right">
             <h1>学生情報登録</h1>
             <div class="success-message">
                 学生情報を登録しました。
