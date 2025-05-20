@@ -18,7 +18,14 @@
         #container {
             display: flex;
             flex-grow: 1;
+            justify-content: flex-start;
         }
+
+        #sidebar {
+	    width: 250px; /* サイドバーの固定幅 */
+	    flex-shrink: 0; /* 縮まないようにする */
+		}
+
 
         #main-content {
             flex-grow: 1;
@@ -67,7 +74,9 @@
 
     <div id="container">
         <%-- サイドバーのインクルード (ファイル名を修正) --%>
+        <div id="sidebar">
         <%@ include file="../share/sidebar.jsp" %>
+        	</div>
 
         <%-- メインコンテンツ --%>
         <div id="main-content">
