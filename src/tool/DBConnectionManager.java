@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnectionManager {
-    private static final String DB_URL = "jdbc:h2:tcp://localhost/~/mond";
+	private static final String DB_URL = "jdbc:h2:tcp://localhost/~/mond;INIT=SET NAMES UTF8";
     private static final String DB_USER = "sa";
     private static final String DB_PASSWORD = "";
 
