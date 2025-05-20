@@ -1,4 +1,3 @@
-<%@page contentType="text/html; charset=UTF-8" %>
 <%@include file="../tool/header.html" %>
 <%--結果を表示し、メニューにもどるクラス --%>
 削除に成功しました。

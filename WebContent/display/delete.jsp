@@ -115,5 +115,5 @@ html, body { height: 100%; }
         <a href="menu.jsp">戻る</a>
     </div>
 </div>
-
+</body>
 <%@ include file="../share/footer.jsp" %>

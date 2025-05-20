@@ -3,11 +3,11 @@
 
 <style>
 #left {
-  width: 15%;
-  border-right: 1px solid black;
-  padding: 10px;
-  box-sizing: border-box;
-  background-color: #FFFFF;
+    width: 15%;
+    border-right: 1px solid black;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #FFFFF;
 }
 
 #side {
@@ -21,16 +21,18 @@
 }
 
 #side a {
-  text-decoration: none;
-  color: #000000;
+    text-decoration: none;
+    color: #000000;
+    writing-mode: horizontal-tb; /* 明示的に横書きを指定 */
 }
 
 #side a:hover {
-  color: #333333;
+    color: #333333;
 }
 
 #side .indent {
-  margin-left: 1rem;
+    margin-left: 1rem;
+    writing-mode: horizontal-tb; /* 明示的に横書きを指定 */
 }
 </style>
 
