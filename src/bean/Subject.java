@@ -6,23 +6,23 @@ public class Subject implements Serializable {
     /**
      * 科目コード:String
      */
-    private String code;
+    private String school_cd;
     /**
      * 科目名:String
      */
-    private String name;
+    private String cd;
     /**
      * 学校コード:String
      */
-    private String schoolCode;
+    private String name;
 
     // ゲッター・セッター
     public String getCode() {
-        return code;
+        return cd;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setCode(String cd) {
+        this.cd = cd;
     }
 
     public String getName() {
@@ -34,11 +34,11 @@ public class Subject implements Serializable {
     }
 
     public String getSchoolCode() {
-        return schoolCode;
+        return school_cd;
     }
 
     public void setSchoolCode(String schoolCode) {
-        this.schoolCode = schoolCode;
+        this.school_cd = school_cd;
     }
 
 	public int getId() {

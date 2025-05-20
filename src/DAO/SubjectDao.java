@@ -17,15 +17,15 @@ public class SubjectDao extends DAO {
         this.connection = connection;
     }
 
-    public Subject get(String code) throws SQLException {
-        String sql = "SELECT * FROM subject WHERE code = ?";
+    public Subject get(String cd) throws SQLException {
+        String sql = "SELECT * FROM subject WHERE cd = ?";
         Subject subject = null;
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, code);
+            stmt.setString(1, cd);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     subject = new Subject();
-                    subject.setCode(rs.getString("code"));
+                    subject.setCode(rs.getString("cd"));
                     subject.setName(rs.getString("name"));
                 }
             }
@@ -66,10 +66,10 @@ public class SubjectDao extends DAO {
         }
     }
 
-    public boolean delete(String code) throws SQLException {
-        String sql = "DELETE FROM subject WHERE code = ?";
+    public boolean delete(String cd) throws SQLException {
+        String sql = "DELETE FROM subject WHERE cd = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, code);
+            stmt.setString(1, cd);
             return stmt.executeUpdate() > 0;
         }
     }
