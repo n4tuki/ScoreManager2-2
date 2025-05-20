@@ -119,7 +119,7 @@
 </div>
 <div id="third" class="box">
 <div class="box-text">
-<a href="#">科目管理</a>
+<a href="<%= request.getContextPath() %>/display/subjectlist">科目管理</a>
 </div>
 </div>
 </div>

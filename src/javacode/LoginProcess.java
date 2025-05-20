@@ -45,9 +45,7 @@ public class LoginProcess extends HttpServlet {
                 System.out.println("School CD before setting session: " + Another.getSchool().getCd());
 
                 session.setAttribute("school", Another.getSchool());
-                System.out.println("Final check: School in session after LoginProcess: " + session.getAttribute("school"));
 
-                System.out.println("School stored in session after LoginProcess: " + session.getAttribute("school"));
             } else {
                 System.out.println("Warning: Another.getSchool() is null!");
             }

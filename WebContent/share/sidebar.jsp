@@ -39,11 +39,11 @@
 
 <div id="left">
 <div id="side">
-<div><a href="<%= request.getContextPath() %>/display/menu.jsp">メニュー</a></div>
+<div><a href="<%= request.getContextPath() %>/display/mmnu">メニュー</a></div>
 <div><a href="<%= request.getContextPath() %>/display/stdm">学生管理</a></div>
 <a>・成績管理</a>
 <div><a href="#" class="indent">[成績登録]</a></div>
 <div><a href="#" class="indent">[成績参照]</a></div>
-<div><a href="#">科目管理</a></div>
+<div><a href="<%= request.getContextPath() %>/display/subjectlist" class="indent">科目管理</a></div>
 </div>
 </div>
