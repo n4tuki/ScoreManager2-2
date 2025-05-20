@@ -22,7 +22,7 @@ public class STDM extends HttpServlet {
     private static final Logger logger = Logger.getLogger(STDM.class.getName());
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
@@ -67,5 +67,9 @@ public class STDM extends HttpServlet {
 
         request.setAttribute("studentList", list);
         request.getRequestDispatcher("studentM.jsp").forward(request, response);
+    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }

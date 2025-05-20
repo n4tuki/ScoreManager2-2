@@ -19,10 +19,12 @@
         }
 
         #content {
-            flex: 1;
-            display: flex;
-            width: 100%;
-        }
+		    flex: 1;
+		    display: flex;
+		    flex-direction: row;
+		    width: 100%;
+		    min-height: 100vh;
+		}
 
         #subheader {
             padding: 1rem;
@@ -32,12 +34,13 @@
         }
 
         #right {
-            flex: 1;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
+	        flex: 1;
+	        padding: 10px;
+	        display: flex;
+	        flex-direction: column;
+	        align-items: flex-start;
+	        max-width: none;
+   		}
 
         table {
             margin-top: 1rem;

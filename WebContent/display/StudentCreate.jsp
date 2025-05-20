@@ -210,7 +210,7 @@
                         </div>
                         <div class="form-actions">
                             <button type="submit">登録して終了</button>
-                            <button type="button">戻る</button>
+                            <button type="button" onclick="location.href='<%= request.getContextPath() %>/display/stdm'">戻る</button>
                         </div>
                     </form>
                 </div>

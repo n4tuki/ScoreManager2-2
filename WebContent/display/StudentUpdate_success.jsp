@@ -62,6 +62,7 @@
             border: 1px solid #c8e6c9;
             border-radius: 5px;
             margin-bottom: 30px;
+
         }
 
         .button-container {
@@ -108,9 +109,9 @@
             <div class="success-message">
                 学生情報を変更しました。
             </div>
-            <div class="button-container">
-                <a href="student_registration_form.jsp" class="button back-button">戻る</a>
-                <a href="<%= request.getContextPath() %>student_list.jsp" class="button list-button">学生一覧</a>
+			<div class="button-container">
+                <button type="button" class="button back-button" onclick="history.back()">戻る</button>
+                <button type="button"  class="button list-button"onclick="location.href='/display/stdm'">学生一覧へ</button>
             </div>
         </div>
     </div>

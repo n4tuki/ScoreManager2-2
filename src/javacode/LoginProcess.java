@@ -64,4 +64,8 @@ public class LoginProcess extends HttpServlet {
         }
         request.getRequestDispatcher("../display/login-error.jsp").forward(request, response);
     }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
+    }
 }

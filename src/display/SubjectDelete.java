@@ -39,4 +39,8 @@ public class SubjectDelete extends HttpServlet {
 		request.setAttribute("subject", subject);
 		request.getRequestDispatcher("delete.jsp").forward(request, response); // フォワード処理を追加
 	}
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    doPost(request, response);
+	}
 }

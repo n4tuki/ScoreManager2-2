@@ -34,7 +34,7 @@ public class StudentCreate extends HttpServlet {
         if (admissionYear == null || studentId == null || name == null || classNum == null) {
             System.out.println("[StudentCreateServlet] Missing required parameters.");
             request.setAttribute("error", "入力データが不足しています。");
-            request.getRequestDispatcher("StudentCreate.jsp").forward(request, response);
+            request.getRequestDispatcher("StudentCreate_error.jsp").forward(request, response);
             return;
         }
 
@@ -48,7 +48,7 @@ public class StudentCreate extends HttpServlet {
         } catch (NumberFormatException e) {
             System.err.println("[StudentCreateServlet] Invalid admissionYear format: " + admissionYear);
             request.setAttribute("error", "入学年度が不正です。");
-            request.getRequestDispatcher("StudentCreate.jsp").forward(request, response);
+            request.getRequestDispatcher("StudentCreate_error.jsp").forward(request, response);
             return;
         }
 
@@ -62,7 +62,7 @@ public class StudentCreate extends HttpServlet {
             if (conn == null) {
                 System.out.println("[StudentCreateServlet] Database connection failed.");
                 request.setAttribute("error", "データベース接続に失敗しました。");
-                request.getRequestDispatcher("StudentCreate.jsp").forward(request, response);
+                request.getRequestDispatcher("StudentCreate_error.jsp").forward(request, response);
                 return;
             }
 
@@ -80,13 +80,17 @@ public class StudentCreate extends HttpServlet {
             } else {
                 System.out.println("[StudentCreateServlet] Student creation failed.");
                 request.setAttribute("error", "登録に失敗しました。");
-                request.getRequestDispatcher("StudentCreate.jsp").forward(request, response);
+                request.getRequestDispatcher("StudentCreate_error.jsp").forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("[StudentCreateServlet] Error: " + e.getMessage());
             request.setAttribute("error", "データベースエラーが発生しました。");
-            request.getRequestDispatcher("StudentCreate.jsp").forward(request, response);
+            request.getRequestDispatcher("StudentCreate_error.jsp").forward(request, response);
         }
+    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }

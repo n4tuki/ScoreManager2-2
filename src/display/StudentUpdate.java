@@ -69,4 +69,8 @@ public class StudentUpdate extends HttpServlet {
             throw new ServletException("データベースエラー", e);
         }
     }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
+    }
 }
