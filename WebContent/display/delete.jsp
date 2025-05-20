@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="java.util.List, bean.Student" %>
+<%@ page import="java.util.List, bean.Student, DAO.SubjectDao, bean.Subject" %>
 
 <%
     List<Student> studentList = (List<Student>) request.getAttribute("studentList");
@@ -7,27 +7,30 @@
     String classNum = request.getParameter("classNum");
     String isAttend = request.getParameter("isAttend");
 
-    // 削除対象の科目コードを取得
     String subjectCodeToDelete = request.getParameter("cd");
+    String subjectNameToDelete = "（科目名未取得）";
+
     if (subjectCodeToDelete == null || subjectCodeToDelete.isEmpty()) {
-        // 科目コードが渡ってきていない場合のエラー処理
-        out.println("<p style='color:red;'>削除する科目が選択されていません。</p>");
-        return; // 処理を中断
+        request.setAttribute("errorMessage", "削除する科目が選択されていません。");
+        request.getRequestDispatcher("delete_error.jsp").forward(request, response);
+        return;
     }
 
-    // 削除対象の科目名（ここでは固定で表示していますが、本来はDBなどから取得すべきです）
-    String subjectNameToDelete = "（科目名未取得）";
-    if ("F02".equals(subjectCodeToDelete)) {
-        subjectNameToDelete = "Javaプログラミング基礎";
-    } else {
-        // 他の科目コードに対応する場合はここに追加の処理を記述
-        // 例：SubjectDaoなどを使って科目コードから科目名を取得する
-        // SubjectDao sDao = new SubjectDao();
-        // Subject subject = sDao.get(subjectCodeToDelete);
-        // if (subject != null) {
-        //     subjectNameToDelete = subject.getName();
-        // }
-        subjectNameToDelete = "科目コード：" + subjectCodeToDelete; // 一応表示
+    try {
+        SubjectDao sDao = new SubjectDao(null);
+        Subject subject = sDao.get(subjectCodeToDelete);
+        if (subject != null) {
+            subjectNameToDelete = subject.getName();
+        } else {
+            request.setAttribute("errorMessage", "指定された科目は存在しません。");
+            request.getRequestDispatcher("delete_error.jsp").forward(request, response);
+            return;
+        }
+    } catch (Exception e) {
+        e.printStackTrace(); // エラーログを出力
+        request.setAttribute("errorMessage", "科目情報の取得中にエラーが発生しました。");
+        request.getRequestDispatcher("delete_error.jsp").forward(request, response);
+        return;
     }
 %>
 
@@ -104,7 +107,7 @@ html, body { height: 100%; }
                 <h3>科目情報削除</h3>
                 <p>「<%= subjectNameToDelete %>」を削除してもよろしいですか</p>
 
-                <form action="delete_success.jsp" method="post">
+                <form action="delete_execute.jsp" method="post">
                     <input type="hidden" name="cd" value="<%= subjectCodeToDelete %>" />
                     <button type="submit" class="btn">削除</button>
                 </form>
