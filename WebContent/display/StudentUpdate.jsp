@@ -242,7 +242,7 @@
 
             <% Student student = (Student) request.getAttribute("student"); %>
 
-            <form action="process_update.jsp" method="post">
+            <form action="<%= request.getContextPath() %>/studentupdate" method="post">
                 <div class="form-group">
                     <label for="entYear">入学年度:</label>
                     <select id="entYear" name="entYear">
@@ -254,9 +254,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="no">学生番号:</label>
-                    <input type="text" id="no" name="no" value="<%= (student != null) ? student.getNo() : "" %>" readonly>
-                </div>
+					   <label for="no">学生番号:</label>
+					   <span id="no"><%= (student != null) ? student.getNo() : "未登録" %></span>
+					   <input type="hidden" name="no" value="<%= (student != null) ? student.getNo() : "" %>">
+				</div>
 
                 <div class="form-group">
                     <label for="name">氏名:</label>

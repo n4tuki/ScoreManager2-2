@@ -206,7 +206,7 @@
                         <td><%= s.getName() %></td>
                         <td><%= s.getClassNum() %></td>
                         <td><%= s.isAttend() ? "○" : "×" %></td>
-                        <td><a href="StudentEdit.action?no=<%= s.getNo() %>">変更</a></td>
+                        <td><a href="<%= request.getContextPath() %>/display/StudentUpdate.jsp?no=<%= s.getNo() %>">変更</a></td>
                     </tr>
                     <%  }
                     } else { %>
