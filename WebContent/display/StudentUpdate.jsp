@@ -1,12 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.List, bean.Student" %>
 
+
+
 <%
-    List<Student> studentList = (List<Student>) request.getAttribute("studentList");
-    String entYear = request.getParameter("entYear");
-    String classNum = request.getParameter("classNum");
-    String isAttend = request.getParameter("isAttend");
+    Student student = (Student) request.getAttribute("student");
 %>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -240,7 +241,6 @@
             <div class="filter-container">
 
 
-            <% Student student = (Student) request.getAttribute("student"); %>
 
             <form action="<%= request.getContextPath() %>/studentupdate" method="post">
                 <div class="form-group">
@@ -256,7 +256,7 @@
                 <div class="form-group">
 					   <label for="no">学生番号:</label>
 					   <span id="no"><%= (student != null) ? student.getNo() : "未登録" %></span>
-					   <input type="hidden" name="no" value="<%= (student != null) ? student.getNo() : "" %>">
+					   <input type="hidden" name="no" value="<%= student != null && student.getNo() != null ? student.getNo() : "" %>">
 				</div>
 
                 <div class="form-group">

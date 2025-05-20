@@ -19,16 +19,34 @@ public class StudentUpdate extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // フォームからデータ取得
+    	request.setCharacterEncoding("UTF-8"); // 追加
         String no = request.getParameter("no");
+
+        System.out.println("StudentUpdateサーブレットで取得した学生番号: " + no);
+
         String name = request.getParameter("name");
         String classNum = request.getParameter("classNum");
         boolean isAttend = request.getParameter("isAttend") != null;
         int entYear = Integer.parseInt(request.getParameter("entYear"));
 
+        System.out.println("取得した学生番号 (リクエストから): " + no);
+        System.out.println("取得した学生番号 (リクエストから): " + request.getParameter("no"));
+
         StudentDao studentDao = new StudentDao();
         try (Connection conn = studentDao.getConnection()) {
+        	System.out.println("データベース接続: " + (conn != null ? "成功" : "失敗"));
             // 既存の学生情報を取得
             Student student = studentDao.get(conn, no);
+
+            System.out.println("サーブレットで取得した学生: " + student);
+            if (student == null) {
+                System.out.println("サーブレットで学生が `null` になった！");
+            }
+
+            System.out.println("データベースから取得した学生: " + student);
+
+            System.out.println("取得した学生: " + student);
+
             if (student != null) {
                 // 学生情報を更新
                 student.setName(name);

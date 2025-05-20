@@ -34,6 +34,7 @@ public class StudentDao {
 
 
     public Student get(Connection conn, String no) {
+    	System.out.println("データベース検索用の学生番号: " + no); // ログ追加
         String sql = "SELECT * FROM STUDENT WHERE NO = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, no);
@@ -104,6 +105,8 @@ public class StudentDao {
             stmt.setString(5, student.getSchoolCd());
             stmt.setString(6, student.getNo());
 
+            System.out.println("更新する学生番号: " + student.getNo());
+
             return stmt.executeUpdate() > 0; // 成功時は true を返す
         } catch (SQLException e) {
             e.printStackTrace();
@@ -143,7 +146,7 @@ public class StudentDao {
 
     public Connection getConnection() {
         try {
-            return DriverManager.getConnection("jdbc:h2:tcp://localhost/~/mond", "sa", "");
+            return DriverManager.getConnection("jdbc:h2:tcp://localhost/~/mond;INIT=SET NAMES UTF8", "sa", "");
         } catch (SQLException e) {
             throw new RuntimeException("Database connection failed", e);
         }

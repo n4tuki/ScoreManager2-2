@@ -8,6 +8,8 @@
     String isAttend = request.getParameter("isAttend");
 %>
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -158,7 +160,7 @@
             </div>
 
             <div class="filter-container">
-				            <form method="Post" action="StudentList.action">
+				            <form action="<%= request.getContextPath() %>/display/studentlist" method="get">
 				<label>入学年度:
 				    <select name="entYear">
 				        <option value="">--------</option>
@@ -206,7 +208,10 @@
                         <td><%= s.getName() %></td>
                         <td><%= s.getClassNum() %></td>
                         <td><%= s.isAttend() ? "○" : "×" %></td>
-                        <td><a href="<%= request.getContextPath() %>/display/StudentUpdate.jsp?no=<%= s.getNo() %>">変更</a></td>
+                        <td><form action="<%= request.getContextPath() %>/display/updf" method="post">
+							<input type="hidden" name="no" value="<%= s.getNo() %>">
+							<button type="submit">変更</button>
+							</form></td>
                     </tr>
                     <%  }
                     } else { %>

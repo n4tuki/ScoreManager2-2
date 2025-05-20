@@ -1,27 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="java.util.List, bean.Student" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>学生情報登録完了</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-color: #f4f4f4;
-        }
+<meta charset="UTF-8">
+<title>Score Management</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        #wrap {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
+    html,
+    body {
+        height: 100vh;
+    }
 
-#content {
+    #wrap {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #content {
     flex: 1;
     display: flex;
     flex-direction: row;
@@ -29,28 +32,29 @@
     min-height: 100vh;
 }
 
-#sidebar {
-    width: 250px; /* 固定幅 */
-    flex-shrink: 0; /* 縮まないようにする */
-}
+    #subheader {
+        padding: 1rem;
+        background-color: gainsboro;
+        border-radius: 5px;
+        width: 100%;
+        display: block;
+        margin-left: 0;
+    }
 
-#right {
-    flex: 1; /* 残りのスペースを使用 */
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    max-width: none;
-}
+    #subtitle {
+        padding: 0.5rem;
+    }
 
+    #right {
+        flex: 1;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: none;
+    }
 
-        #main-content {
-            flex-grow: 1;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .success-message {
+    .success-message {
             background-color: #e8f5e9; /* 薄い緑 */
             color: #388e3c; /* 濃い緑 */
             padding: 15px;
@@ -83,33 +87,35 @@
             background-color: #e3f2fd; /* 薄い青 */
             color: #1e88e5; /* 濃い青 */
         }
-    </style>
+
+</style>
 </head>
 <body>
-    <%-- ヘッダーのインクルード --%>
-    <%@ include file="../share/header.jsp" %>
 
-    <div id="wrap">
-        <%-- サイドバーのインクルード (ファイル名を修正) --%>
-        <div id="sidebar">
-        <%@ include file="../share/sidebar.jsp" %>
-        	</div>
+<div id="wrap">
+    <%@include file="../share/header.jsp" %>
+    <div id="content">
+        <%@include file="../share/sidebar.jsp" %>
+        <div id="right">
+            <div id="subheader">
+                <div id="subtitle">
+                    <h3>学生情報変更</h3>
+                </div>
+            </div>
 
-        <%-- メインコンテンツ --%>
+            <div id="right">
 
-          <div id="right">
-            <h1>学生情報変更</h1>
             <div class="success-message">
                 学生情報を変更しました。
             </div>
             <div class="button-container">
                 <a href="student_registration_form.jsp" class="button back-button">戻る</a>
-                <a href="student_list.jsp" class="button list-button">学生一覧</a>
+                <a href="<%= request.getContextPath() %>student_list.jsp" class="button list-button">学生一覧</a>
             </div>
         </div>
     </div>
+    </div>
+    </div>
 
-    <%-- フッターのインクルード --%>
-    <%@ include file="../share/footer.jsp" %>
-</body>
-</html>
+
+<%@ include file="../share/footer.jsp" %>
