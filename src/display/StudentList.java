@@ -1,8 +1,12 @@
 package display;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,20 +14,20 @@ import javax.servlet.http.HttpSession;
 import DAO.StudentDao;
 import bean.School;
 import bean.Student;
-import tool.Action;
-import tool.DBConnectionManager; // DB接続管理クラス
+import tool.DBConnectionManager;
 
-public class StudentListAction extends Action {
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+@WebServlet("/display/studentlist")
+public class StudentList extends HttpServlet {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
         HttpSession session = request.getSession();
         School school = (School) session.getAttribute("school");
 
-        // **Schoolがnullならデータベースから取得**
         try (Connection conn = DBConnectionManager.getConnection()) {
             if (conn == null) {
-                throw new RuntimeException("Failed to establish database connection.");
+                throw new ServletException("Failed to establish database connection.");
             }
 
             if (school == null) {
@@ -32,7 +36,7 @@ public class StudentListAction extends Action {
                 session.setAttribute("school", school);
             }
 
-            // **リクエストパラメータを取得 & 安全な処理**
+            // リクエストパラメータを取得
             String entYearStr = request.getParameter("entYear");
             String classNum = request.getParameter("classNum");
             String attendStr = request.getParameter("isAttend");
@@ -48,7 +52,7 @@ public class StudentListAction extends Action {
                 System.err.println("Invalid entYear format: " + entYearStr);
             }
 
-            // **DAOの処理**
+            // DAOの処理
             StudentDao dao = new StudentDao();
             List<Student> filteredList = dao.filter(conn, school, entYear, classNum, isAttend);
 
@@ -61,6 +65,7 @@ public class StudentListAction extends Action {
             request.setAttribute("error", "データ取得時にエラーが発生しました。");
         }
 
-        return "studentM.jsp"; // **その都度新しい検索結果を適用**
+        // `studentM.jsp` にフォワード
+        request.getRequestDispatcher("/display/studentM.jsp").forward(request, response);
     }
 }

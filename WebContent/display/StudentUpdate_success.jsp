@@ -110,7 +110,7 @@
             </div>
             <div class="button-container">
                 <a href="student_registration_form.jsp" class="button back-button">戻る</a>
-                <a href="student_list.jsp" class="button list-button">学生一覧</a>
+                <a href="<%= request.getContextPath() %>student_list.jsp" class="button list-button">学生一覧</a>
             </div>
         </div>
     </div>
