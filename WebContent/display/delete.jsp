@@ -12,7 +12,6 @@
     if (subjectCodeToDelete == null || subjectCodeToDelete.isEmpty()) {
         // 科目コードが渡ってきていない場合のエラー処理
         out.println("<p style='color:red;'>削除する科目が選択されていません。</p>");
-        out.println("<a href='menu.jsp'>戻る</a>");
         return; // 処理を中断
     }
 
