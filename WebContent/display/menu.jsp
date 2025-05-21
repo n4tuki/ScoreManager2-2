@@ -202,14 +202,14 @@
 <div id="secondary" class="box">
 <div class="box-text">
 <h4>【成績管理】</h4>
-<a href="#">成績登録</a><br>
+<a href="<%= request.getContextPath() %>/display/">成績登録</a><br>
 <a href="#">成績参照</a>
 </div>
 </div>
 
 <div id="third" class="box">
 <div class="box-text">
-<a href="#">科目管理</a>
+<a href="<%= request.getContextPath() %>/display/subjectlist" class="indent">科目管理</a>
 <div class="heart"></div>
 </div>
 </div>
