@@ -131,7 +131,7 @@
                     <h3>科目一覧</h3>
                 </div>
                 <div>
-                    <a href="<%= request.getContextPath() %>/display/SubjectScore.jsp" class="new-entry-button">新規登録</a>
+                    <a href="<%= request.getContextPath() %>/display/subjectCreate.jsp" class="new-entry-button">新規登録</a>
                 </div>
             </div>
 
