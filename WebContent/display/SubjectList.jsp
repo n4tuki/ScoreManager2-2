@@ -131,7 +131,7 @@
                     <h3>科目一覧</h3>
                 </div>
                 <div>
-                    <a href="<%= request.getContextPath() %>/display/subjectCreate.jsp" class="new-entry-button">新規登録</a>
+                    <a href="<%= request.getContextPath() %>/display/SubjectScore.jsp" class="new-entry-button">新規登録</a>
                 </div>
             </div>
 
@@ -153,7 +153,7 @@
                                     <input type="hidden" name="cd" value="${subject.cd}">
                                     <button type="submit">変更</button>
                                 </form>
-                                <form action="<%= request.getContextPath() %>/display/subjectDelete" method="post">
+                                <form action="<%= request.getContextPath() %>/display/delete" method="post">
                                     <input type="hidden" name="cd" value="${subject.cd}">
                                     <button type="submit">削除</button>
                                 </form>
