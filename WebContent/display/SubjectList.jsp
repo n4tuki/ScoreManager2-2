@@ -43,7 +43,7 @@
                     <h3>科目一覧</h3>
                 </div>
                 <div>
-                    <a href="<%= request.getContextPath() %>/display/subjectcreate.jsp" class="new-entry-button">新規登録</a>
+                    <a href="<%= request.getContextPath() %>/display/subjectcreatef" class="new-entry-button">新規登録</a>
                 </div>
             </div>
 
