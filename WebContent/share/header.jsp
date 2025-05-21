@@ -33,21 +33,21 @@
 </style>
 
 <div id="header">
-    <div id="title">得点管理システム</div>
-    <div id="subinfo">
-        <%
-            Teacher teacher = (Teacher) session.getAttribute("teacher"); // セッションからログインユーザー取得
+<div id="title">得点管理システム</div>
+<div id="subinfo">
+<%
+            Teacher teacher = (Teacher) session.getAttribute("teacher");
 
             if (teacher != null) {
         %>
-            <p><%= teacher.getName() %> 様</p>
-            <p><a href="login-out.jsp">ログアウト</a></p>
-        <%
+<p><%= teacher.getName() %> 様</p>
+<p><a href="login-out.jsp">ログアウト</a></p>
+<%
             } else {
         %>
-            <p><a href="login-in.jsp">ログイン</a></p>
-        <%
+
+<%
             }
         %>
-    </div>
+</div>
 </div>
