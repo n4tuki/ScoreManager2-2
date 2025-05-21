@@ -54,11 +54,13 @@ public class SubjectDao {
 
     // 科目を登録
     public boolean save(Subject subject) throws SQLException {
-        String sql = "INSERT INTO subject (cd, name) VALUES (?, ?)";
+        String sql = "INSERT INTO subject (school_cd, cd, name) VALUES (?, ?, ?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, subject.getCd());
-            stmt.setString(2, subject.getName());
+            stmt.setString(1, subject.getSchoolCd()); // SCHOOL_CDの値をセット
+            stmt.setString(2, subject.getCd());
+            stmt.setString(3, subject.getName());
+
             int affectedRows = stmt.executeUpdate();
 
             if (affectedRows == 0) {

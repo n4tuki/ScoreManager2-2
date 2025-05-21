@@ -8,109 +8,21 @@
     <meta charset="UTF-8">
     <title>科目管理</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            height: 100vh;
-        }
-
-        #wrap {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-
-        #content {
-            flex: 1;
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            min-height: 100vh;
-        }
-
-        #subheader {
-            padding: 1rem;
-            background-color: gainsboro;
-            border-radius: 5px;
-            width: 100%;
-        }
-
-        #right {
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 80%;
-        }
-
-        .filter-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            width: 90%;
-        }
-
-        table {
-            width: 90%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #f0f0f0;
-        }
-
-        .action-links {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .action-links form {
-            display: inline-block;
-        }
-
-        button {
-            padding: 6px 12px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .new-entry-button {
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: #28a745;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .new-entry-button:hover {
-            background-color: #1e7e34;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100vh; }
+        #wrap { display: flex; flex-direction: column; width: 100%; }
+        #content { flex: 1; display: flex; flex-direction: row; width: 100%; min-height: 100vh; }
+        #subheader { padding: 1rem; background-color: gainsboro; border-radius: 5px; width: 100%; }
+        #right { flex: 1; padding: 20px; display: flex; flex-direction: column; align-items: center; max-width: 80%; }
+        table { width: 90%; border-collapse: collapse; margin-top: 15px; border-radius: 8px; overflow: hidden; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+        th { background-color: #f0f0f0; }
+        .action-links { display: flex; justify-content: center; gap: 10px; }
+        .action-links form { display: inline-block; }
+        button { padding: 6px 12px; border: none; background-color: #007bff; color: white; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        .new-entry-button { display: inline-block; padding: 8px 15px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px; }
+        .new-entry-button:hover { background-color: #1e7e34; }
     </style>
 </head>
 <body>
@@ -131,7 +43,7 @@
                     <h3>科目一覧</h3>
                 </div>
                 <div>
-                    <a href="<%= request.getContextPath() %>/display/subjectCreate.jsp" class="new-entry-button">新規登録</a>
+                    <a href="<%= request.getContextPath() %>/display/subjectcreate.jsp" class="new-entry-button">新規登録</a>
                 </div>
             </div>
 
@@ -149,12 +61,13 @@
                             <td>${subject.cd}</td>
                             <td>${subject.name}</td>
                             <td class="action-links">
-                                <form action="<%= request.getContextPath() %>/display/subjectEdit" method="get">
+                                <form action="<%= request.getContextPath() %>/display/subjectedit" method="get">
                                     <input type="hidden" name="cd" value="${subject.cd}">
                                     <button type="submit">変更</button>
                                 </form>
-                                <form action="<%= request.getContextPath() %>/display/delete" method="post">
+                                <form action="<%= request.getContextPath() %>/display/subjectdeletef" method="post">
                                     <input type="hidden" name="cd" value="${subject.cd}">
+                                    <input type="hidden" name="subjectName" value="${subject.name}">
                                     <button type="submit">削除</button>
                                 </form>
                             </td>

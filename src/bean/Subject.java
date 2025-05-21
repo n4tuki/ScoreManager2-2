@@ -33,11 +33,11 @@ public class Subject implements Serializable {
         this.name = name;
     }
 
-    public String getSchoolCode() {
+    public String getSchoolCd() {
         return school_cd;
     }
 
-    public void setSchoolCode(String schoolCode) {
+    public void setSchoolCd(String school_cd) {
         this.school_cd = school_cd;
     }
 
