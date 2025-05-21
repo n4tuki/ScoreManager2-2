@@ -111,7 +111,7 @@
             </div>
 			<div class="button-container">
                 <button type="button" class="button back-button" onclick="history.back()">戻る</button>
-                <button type="button"  class="button list-button"onclick="location.href='/display/stdm'">学生一覧へ</button>
+                <button type="button"  class="button list-button"onclick="location.href='display/stdm'">学生一覧へ</button>
             </div>
         </div>
     </div>
