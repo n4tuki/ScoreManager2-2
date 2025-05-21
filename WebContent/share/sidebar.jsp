@@ -44,6 +44,6 @@
 <a>・成績管理</a>
 <div><a href="#" class="indent">[成績登録]</a></div>
 <div><a href="#" class="indent">[成績参照]</a></div>
-<div><a href="#">科目管理</a></div>
+<div><a href="<%= request.getContextPath() %>/display/subjectlist" class="indent">科目管理</a></div>
 </div>
 </div>

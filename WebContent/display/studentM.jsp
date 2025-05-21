@@ -160,7 +160,7 @@
             </div>
 
             <div class="filter-container">
-				            <form action="<%= request.getContextPath() %>/display/studentlist" method="get">
+				            <form action="<%= request.getContextPath() %>/display/studentlist" method="Post">
 				<label>入学年度:
 				    <select name="entYear">
 				        <option value="">--------</option>

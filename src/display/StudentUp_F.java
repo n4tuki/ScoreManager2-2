@@ -36,4 +36,8 @@ public class StudentUp_F extends HttpServlet {
         request.setAttribute("student", student);
         request.getRequestDispatcher("/display/StudentUpdate.jsp").forward(request, response);
     }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
+    }
 }

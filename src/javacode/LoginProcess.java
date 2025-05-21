@@ -45,9 +45,7 @@ public class LoginProcess extends HttpServlet {
                 System.out.println("School CD before setting session: " + Another.getSchool().getCd());
 
                 session.setAttribute("school", Another.getSchool());
-                System.out.println("Final check: School in session after LoginProcess: " + session.getAttribute("school"));
 
-                System.out.println("School stored in session after LoginProcess: " + session.getAttribute("school"));
             } else {
                 System.out.println("Warning: Another.getSchool() is null!");
             }
@@ -63,5 +61,9 @@ public class LoginProcess extends HttpServlet {
             request.setAttribute("errorMessage", "IDまたはパスワードが間違っています。");
         }
         request.getRequestDispatcher("../display/login-error.jsp").forward(request, response);
+    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }

@@ -17,11 +17,11 @@ public class Subject implements Serializable {
     private String name;
 
     // ゲッター・セッター
-    public String getCode() {
+    public String getCd() {
         return cd;
     }
 
-    public void setCode(String cd) {
+    public void setCd(String cd) {
         this.cd = cd;
     }
 
