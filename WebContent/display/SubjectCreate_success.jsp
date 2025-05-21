@@ -100,9 +100,9 @@
 <p>登録が完了しました</p>
 <br>
 
-<a href="">戻る</a>
+<a href="menu.jsp">戻る</a>
 
-<a href="SubjectListAction.java">科目一覧</a>
+<a href="SubjectList.jsp">科目一覧</a>
 </div>
 </div>
 </div>

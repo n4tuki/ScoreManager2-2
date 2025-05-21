@@ -163,11 +163,11 @@
 
 <%--結果を表示し、メニューにもどるクラス --%>
 
-削除に失敗しましたyooooooo。
+削除に失敗しましたyooooooo！。
 
 <%--Topページへもどる --%>
 
-<p><a href="../display/menu.jsp">メニューに戻る</a>
+<p><a href="../display/SubjectList.jsp">科目一覧</a>
 
 <%@include file="../tool/footer.html" %>
 

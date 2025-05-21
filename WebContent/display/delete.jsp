@@ -1,37 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="java.util.List, bean.Student, DAO.SubjectDao, bean.Subject" %>
+<%@ page import="java.util.List, bean.Student" %>
 
 <%
     List<Student> studentList = (List<Student>) request.getAttribute("studentList");
     String entYear = request.getParameter("entYear");
     String classNum = request.getParameter("classNum");
     String isAttend = request.getParameter("isAttend");
-
-    String subjectCodeToDelete = request.getParameter("cd");
-    String subjectNameToDelete = "（科目名未取得）";
-
-    if (subjectCodeToDelete == null || subjectCodeToDelete.isEmpty()) {
-        request.setAttribute("errorMessage", "削除する科目が選択されていません。");
-        request.getRequestDispatcher("delete_error.jsp").forward(request, response);
-        return;
-    }
-
-    try {
-        SubjectDao sDao = new SubjectDao(null);
-        Subject subject = sDao.get(subjectCodeToDelete);
-        if (subject != null) {
-            subjectNameToDelete = subject.getName();
-        } else {
-            request.setAttribute("errorMessage", "指定された科目は存在しません。");
-            request.getRequestDispatcher("delete_error.jsp").forward(request, response);
-            return;
-        }
-    } catch (Exception e) {
-        e.printStackTrace(); // エラーログを出力
-        request.setAttribute("errorMessage", "科目情報の取得中にエラーが発生しました。");
-        request.getRequestDispatcher("delete_error.jsp").forward(request, response);
-        return;
-    }
 %>
 
 <!DOCTYPE html>
@@ -40,59 +14,134 @@
 <meta charset="UTF-8">
 <title>Score Management</title>
 <style>
- * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-html, body { height: 100%; }
+    html,
+    body {
+        height: 100vh;
+    }
 
-#wrap {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+    #wrap {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #content {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 100vh;
 }
 
-#content {
-  flex: 1;
-  display: flex;
-  flex-direction: row; /* 横並びに */
-  width: 100%;
-}
+    #subheader {
+        padding: 1rem;
+        background-color: gainsboro;
+        border-radius: 5px;
+        width: 100%;
+        display: block;
+        margin-left: 0;
+    }
 
-#subheader {
-  padding: 1rem;
-  background-color: gainsboro;
-  border-radius: 5px;
-  width: 100%;
-  display: block;
-  margin-left: 0;
-}
+    #subtitle {
+        padding: 0.5rem;
+    }
 
+    #right {
+        flex: 1;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: none;
+    }
 
-  #subtitle {
-    padding: 0.5rem;
-  }
+    /* フォームコンテナ */
+    .filter-container {
+        display: flex;
+        flex-wrap: wrap; /* 折り返しを有効にする */
+        align-items: center; /* 垂直方向中央揃え */
+        margin-bottom: 10px;
+        gap: 10px; /* 要素間のギャップ */
+    }
 
-#right {
-  flex: 1;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  max-width: none;
-}
+    /* フォーム要素のスタイル */
+    .filter-container label,
+    .filter-container select,
+    .filter-container input[type="checkbox"] {
+        margin-right: 10px;
+        margin-bottom: 5px; /* 各要素の下マージン */
+    }
 
-.btn {
-    padding: 0.5rem 1rem;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    /* セレクトボックスのスタイル */
+    .filter-container select {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
 
-.btn:hover {
-    background-color: #c82333;
-}
+    /* チェックボックスのスタイル */
+    .filter-container input[type="checkbox"] {
+        margin-right: 5px;
+    }
 
+    /* 絞り込みボタンのスタイル */
+    .filter-container button {
+        padding: 8px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .filter-container button:hover {
+        background-color: #0056b3;
+    }
+
+    /* 新規登録ボタンのスタイル */
+    .new-entry-button {
+        display: inline-block;
+        padding: 8px 15px;
+        background-color: #28a745; /* 緑色 */
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .new-entry-button:hover {
+        background-color: #1e7e34; /* 濃い緑色 */
+    }
+
+    /* 結果件数のスタイル */
+    .result-count {
+        text-align: left;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    /* テーブルのスタイル */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    th,
+    td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f0f0f0;
+    }
 </style>
 </head>
 <body>
@@ -104,18 +153,21 @@ html, body { height: 100%; }
         <div id="right">
             <div id="subheader">
                 <div id="subtitle">
-                <h3>科目情報削除</h3>
-                <p>「<%= subjectNameToDelete %>」を削除してもよろしいですか</p>
-
-                <form action="delete_execute.jsp" method="post">
-                    <input type="hidden" name="cd" value="<%= subjectCodeToDelete %>" />
-                    <button type="submit" class="btn">削除</button>
-                </form>
+                    <h3>科目情報削除</h3>
                 </div>
             </div>
-        </div>
-        <a href="menu.jsp">戻る</a>
-    </div>
-</div>
-</body>
+<div class="content">
+
+        <p>削除してもよろしいですか</p>
+
+        <form action="SubjectDelete.action" method="post">
+            <input type="hidden" name="code" value="F02" />
+            <button type="submit" class="btn">削除</button>
+        </form>
+
+<p><a href="../display/menu.jsp">メニューに戻る</a>
+
+<%@include file="../tool/footer.html" %>
+
+  </div>
 <%@ include file="../share/footer.jsp" %>

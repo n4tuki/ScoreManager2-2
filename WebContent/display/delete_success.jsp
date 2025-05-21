@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.List, bean.Student" %>
 
@@ -167,7 +166,7 @@
 
 <%--Topページへもどる --%>
 
-<p><a href="../display/menu.jsp">メニューに戻る</a>
+<p><a href="../display/SubjectList.jsp">科目一覧</a>
 
 <%@include file="../tool/footer.html" %>
 

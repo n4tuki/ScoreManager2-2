@@ -110,7 +110,7 @@
                 科目を削除しました。
             </div>
 			<div class="button-container">
-                <button type="button" class="button list-button" onclick="location.href='<%= request.getContextPath() %>/display/subjectlist'">科目一覧へ</button>
+                <button type="button" class="button list-button" onclick="location.href='<%= request.getContextPath() %>/display/SubjectList.jsp'">科目一覧へ</button>
             </div>
         </div>
     </div>
