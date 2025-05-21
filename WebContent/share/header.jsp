@@ -43,11 +43,11 @@
 <p><%= teacher.getName() %> 様</p>
 <p><a href="login-out.jsp">ログアウト</a></p>
 <%
-            } else {
+            }
         %>
 
 <%
-            }
+
         %>
 </div>
 </div>
