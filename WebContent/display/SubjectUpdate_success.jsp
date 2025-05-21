@@ -100,14 +100,14 @@
         <div id="right">
             <div id="subheader">
                 <div id="subtitle">
-                    <h3>科目情報削除</h3>
+                    <h3>科目情報変更</h3>
                 </div>
             </div>
 
             <div id="right">
 
             <div class="success-message">
-                科目を削除しました。
+                科目を変更しました。
             </div>
 			<div class="button-container">
                 <button type="button" class="button list-button" onclick="location.href='<%= request.getContextPath() %>/display/subjectlist'">科目一覧へ</button>
