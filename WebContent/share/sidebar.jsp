@@ -41,7 +41,7 @@
 <div id="side">
 <div><a href="<%= request.getContextPath() %>/display/mmnu">メニュー</a></div>
 <div><a href="<%= request.getContextPath() %>/display/stdm">学生管理</a></div>
-<a>・成績管理</a>
+<div><a href="<%= request.getContextPath() %>/display/ScoreList">・成績管理</a></div>
 <div><a href="#" class="indent">[成績登録]</a></div>
 <div><a href="#" class="indent">[成績参照]</a></div>
 <div><a href="<%= request.getContextPath() %>/display/subjectlist">科目管理</a></div>
